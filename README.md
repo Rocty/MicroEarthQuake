@@ -5,13 +5,12 @@
 基于TensorFlow深度学习框架的微震检测系统
 
 #### 安装教程
-以下每行以 $ 开头，即 $ 开始为一行，中间不断行。{XXX}需根据不同机器环境做修改（{}花括号不用打）。
-
-无GPU版本：（推荐）
+Ⅰ.无GPU版本：（推荐）
 1.安装docker:
 参考https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository
 和http://www.cnblogs.com/youran-he/p/9566059.html
 
+```
 $ sudo apt-get update
 $ sudo apt-get install \
     apt-transport-https \
@@ -26,16 +25,20 @@ $ curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg | sudo apt-k
 $ sudo add-apt-repository "deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
 $ sudo apt update
 $ sudo apt install docker-ce
+```
 
 2.拉取镜像：
+
+```
 $ sudo docker login
+```
 账号：ustclinjf
 密码：ustclinjf
 
 若CPU较新（支持AVX2.0指令集）：
-$ sudo docker pull ustclinjf/microearthquake:v0.1-cpu
+`$ sudo docker pull ustclinjf/microearthquake:v0.1-cpu`
 若CPU较旧：
-$ sudo docker pull ustclinjf/microearthquake:v0.1-cpu-tf1.5
+`$ sudo docker pull ustclinjf/microearthquake:v0.1-cpu-tf1.5`
 
 3.修改台站数据信息：
 具体修改代码文件MicroEarthQuake/config/monitor_station.txt文件，将其修改为需监控的台站名，格式参照该文件。（注意：目前只监控00台站，所以只填写00台站）
@@ -68,7 +71,7 @@ $ sudo docker attach {记录的容器ID}
 $ python /root/code/main.py
 
 
-有GPU版本：
+Ⅱ.有GPU版本：
 1.安装docker:同上
 2.安装显卡驱动：https://blog.csdn.net/qq_37935670/article/details/80377196
 3.安装nvidia-docker
