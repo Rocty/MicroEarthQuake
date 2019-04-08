@@ -7,9 +7,9 @@
 
 ## 安装教程  
 
-###Ⅰ.无GPU版本：（推荐）  
+Ⅰ.无GPU版本：（推荐）  
 
-####1.安装docker:  
+1.安装docker:  
 
 参考https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository  
 和http://www.cnblogs.com/youran-he/p/9566059.html  
@@ -31,7 +31,7 @@
 
 
 
-####2.拉取镜像：  
+2.拉取镜像：  
 
 `$ sudo docker login`   
 账号：`ustclinjf`  
@@ -42,7 +42,7 @@
 若CPU较旧：  
 `$ sudo docker pull ustclinjf/microearthquake:v0.1-cpu-tf1.5`  
 
-####3.修改台站数据信息：
+#3.修改台站数据信息：
 
 具体修改代码文件`MicroEarthQuake/config/monitor_station.txt`文件，将其修改为需监控的台站名，格式参照该文件。（注意：目前只监控00台站，所以只填写00台站）  
 
@@ -50,7 +50,7 @@
 `self.jonpens_host = ‘10.51.141.18’  `
 后面IP地址改为jopens服务器地址。  
 
-####4.修改镜像时间：  
+4.修改镜像时间：  
 
 1)先运行容器：  
 
@@ -63,64 +63,64 @@
 4)修改时间：  
 `$ sudo docker cp /etc/localtime {containerid}:/etc/localtime`  
   
-####5.修改hyposat权限：  
+5.修改hyposat权限：  
 
 进入代码文件`MicroEarthQuake/location/hyposat.6_0d/bin `  
 然后执行：  
 
 `$ sudo chmod 777 hyposat`
   
-####6.重新进入docker容器：  
+6.重新进入docker容器：  
 
 `$ sudo docker attach {记录的容器ID}`  
 
-####7.执行程序：  
+7.执行程序：  
 
 执行代码文件MicroEarthQuake/main.py，已挂在在容器环境中的/root/code：  
 
 `$ python /root/code/main.py`   
 
-###Ⅱ.有GPU版本：  
+Ⅱ.有GPU版本：  
 
-####1.安装docker:同上  
+1.安装docker:同上  
   
-####2.安装显卡驱动：https://blog.csdn.net/qq_37935670/article/details/80377196   
+2.安装显卡驱动：https://blog.csdn.net/qq_37935670/article/details/80377196   
 
-####3.安装nvidia-docker    
+3.安装nvidia-docker    
 
-####4.拉取镜像：  
+4.拉取镜像：  
 
 `$ sudo docker login`  
 账号：`ustclinjf`  
 密码：`ustclinjf`  
 `$ sudo docker pull ustclinjf/microearthquake:v0.1`    
 
-####5.修改镜像时间：  
+5.修改镜像时间：  
 
 将容器版本修改为ustclinjf/microearthquake:v0.1  
 运行容器命令：  
 
 `$ sudo docker run -it --runtime=nvidia --net=host -v /home/ahdy/Downloads/MicroEarthQuakce:/root/code --privileged=true ustclinjf/microearthquake:v0.1 bash`
 
-####6.修改hyposat权限：同上  
+6.修改hyposat权限：同上  
 
-####7.重新进入docker容器：同上   
+7.重新进入docker容器：同上   
 
-####8.执行程序：同上  
+8.执行程序：同上  
 
 ## 启动流程  
 
-###1.查看容器ID   
+1.查看容器ID   
 
 `$ sudo docker ps -a`  
 记下IMAGE为`ustclinjf/microearthquake:{版本号}`，STATUS距离当前最近的CONTAINER ID  
 
-###2.启动docker 环境：  
+2.启动docker 环境：  
 
 `$ sudo docker attach {上一步记录的ID}`  
 （若容器已经停止运行，即status不是up，则需先执行：`$ sudo docker start {上一步记录的ID}`）  
 
-###3.执行程序：  
+3.执行程序：  
 
 `$ python /root/code/main.py`   
 (若找不到该文件，改为: `$ python /root/code/MicroEarthQuake/main.py`)  
