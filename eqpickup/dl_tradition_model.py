@@ -2,10 +2,8 @@ import numpy as np
 import copy
 from spectrum import aryule
 from obspy.signal.filter import bandpass
-from phasepapy.phasepicker import aicdpicker
 import math
 import pywt
-import matplotlib.pyplot as plt
 
 from eqpickup.cblstm import CBLSTM
 from config.config import Config

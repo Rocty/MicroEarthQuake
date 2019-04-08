@@ -1,5 +1,9 @@
 import tensorflow as tf
 
+"""
+
+"""
+
 
 def variable_summaries(var, name=None):
     """Attach a lot of summaries to a Tensor (for TensorBoard visualization)."""
@@ -20,14 +24,7 @@ def variable_summaries(var, name=None):
     tf.add_to_collection('train_summary', his_summ)
 
 
-def conv(input,
-         filter,
-         strides,
-         padding,
-         acti_func=tf.nn.relu,
-         wd=None,
-         bias=None,
-         name=None):
+def conv(input, filter, strides, padding, acti_func=tf.nn.relu, wd=None, bias=None, name=None):
     with tf.variable_scope(name) as scope:
         # kernel = tf.get_variable('weight',
         #                          shape=filter,
@@ -42,9 +39,9 @@ def conv(input,
 
         if bias is not None:
             # bias = tf.get_variable('bias',
-            #                        filter[-1],
-            #                        dtype=tf.float32,
-            #                        initializer=tf.constant_initializer(bias))
+            # filter[-1],
+            # dtype=tf.float32,
+            # initializer=tf.constant_initializer(bias))
             bias = tf.Variable(tf.constant(bias, shape=[filter[-1]]), name='bias')
             variable_summaries(bias, 'bias')
 

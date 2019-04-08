@@ -1,9 +1,6 @@
-import obspy
 import numpy as np
-import datetime
-import tensorflow as tf
-from obspy.signal.filter import bandpass
 
+from obspy.signal.filter import bandpass
 from config.config import Config
 from eqdetector.cnn import CNN
 

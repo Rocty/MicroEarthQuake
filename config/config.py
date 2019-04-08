@@ -1,9 +1,15 @@
+"""
+    代码功能：
+    主要方法：RequestDataConfig()；EqDetectorConfig()；DLTraditionModelConfig()；Config()
+"""
 
+
+# 功能： 从配置文件中读取配置信息
 class RequestDataConfig(object):
     def __init__(self):
         self.jopens_host = '10.51.141.18'
-        self.request_time = 3600 * 1   # 请求数据时间间隔，每隔多久请求一次数据
-        self.monitor_station_txt = 'config/monitor_station.txt'
+        self.request_time = 3600 * 1  # 请求数据时间间隔，每隔多久请求一次数据
+        self.monitor_station_txt = 'config/monitor_station.txt'  # 指向台站ID配置文件
         self.monitor_station = []
         with open(self.monitor_station_txt) as f:
             for station in f.readlines():
@@ -15,10 +21,17 @@ class RequestDataConfig(object):
         self.buffer_window_time = self.request_time  # 缓冲区时间长度，处理数据时间长度
 
 
+# 功能：
+# 参数类型：
+# 返回值类型：
 class EqDetectorConfig(object):
     def __init__(self):
         self.max_window_size = 60
 
+
+# 功能：
+# 参数类型：
+# 返回值类型：
 class DLTraditionModelConfig(object):
     def __init__(self):
         self.cblstm_step_size = 100
@@ -26,22 +39,23 @@ class DLTraditionModelConfig(object):
         self.cblstm_max_grad_norm = 5
         self.cblstm_keep_prob = 0.5
         self.cblstm_class_num = 3
-        self.ps_lwinsize = 300      # s * 100
-        self.ps_rwinsize = 100      # s * 100
-        self.min_p_s_time = 25      # s * 100
+        self.ps_lwinsize = 300  # s * 100
+        self.ps_rwinsize = 100  # s * 100
+        self.min_p_s_time = 25  # s * 100
 
+
+# 功能：
+# 参数类型：
+# 返回值类型：
 class Config(object):
     def __init__(self):
         self.request_data_config = RequestDataConfig()
         self.eq_detector_config = EqDetectorConfig()
         self.dl_tradition_model_config = DLTraditionModelConfig()
-        self.window_lag_time = 15   # 扫描窗口时间跨度
+        self.window_lag_time = 15  # 扫描窗口时间跨度
         self.detect_window_size = 45
         self.pickup_window_size = 60
 
+
 if __name__ == '__main__':
     config = Config()
-
-
-
-

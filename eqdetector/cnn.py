@@ -5,6 +5,7 @@ from config.config import Config
 from tflib import layers
 from tflib.models import Model
 
+
 def data_process(data):
     data_input = np.reshape(data, [data.shape[0], 1, data.shape[1], 3])
     data_mean = np.stack([np.mean(data_input, axis=2)] * data.shape[1], axis=2)
@@ -32,7 +33,6 @@ class CNN(object):
     def close_sess(self, sess):
         sess.close()
         tf.reset_default_graph()
-
 
     def setup_layer(self):
         layer = dict()
@@ -133,7 +133,6 @@ class CNN(object):
         layer['class_prediction'] = tf.argmax(layer['class_prob'], 1, name='class_pred')
 
         return layer
-
 
     def setup_loss(self):
         with tf.name_scope('loss'):

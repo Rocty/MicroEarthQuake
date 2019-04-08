@@ -3,6 +3,7 @@ import platform
 
 from location.util import *
 
+
 class Location(object):
     def __init__(self):
         pass
@@ -29,10 +30,5 @@ class Hyposat(Location):
             os.system("cp location/hyposat.6_0d/hyposat-isf event_record/{}-isf".format(output_filename))
             loc_output_filename = "event_record/{}-out".format(output_filename)
 
-
         event_solution_stats = read_hyposat_out(loc_output_filename)
         return event_solution_stats
-
-
-
-

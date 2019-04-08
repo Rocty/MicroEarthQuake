@@ -1,9 +1,6 @@
 import tensorflow as tf
 import numpy as np
 import math
-import sys
-import os
-from tensorflow.python import debug as tf_debug
 
 from config.config import Config
 from tflib.models import Model

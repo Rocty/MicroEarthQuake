@@ -1,12 +1,14 @@
 import numpy as np
 
+
 def rms(x, axis=None):
     """ Function to calculate the root mean square value of an array.
     """
     if len(x) == 0:
         return 0
-    return np.sqrt(np.mean(x**2, axis=axis))   
-    
+    return np.sqrt(np.mean(x ** 2, axis=axis))
+
+
 def rolling_window(a, window):
     """ Efficient rolling statistics with NumPy: This is applied to Picker._statistics() to calculate statistics
         and Summary.threshold() to calcuate threshold to trigger event
@@ -15,4 +17,4 @@ def rolling_window(a, window):
     """
     shape = a.shape[:-1] + (a.shape[-1] - window + 1, window)
     strides = a.strides + (a.strides[-1],)
-    return np.lib.stride_tricks.as_strided(a, shape=shape, strides=strides) 
+    return np.lib.stride_tricks.as_strided(a, shape=shape, strides=strides)

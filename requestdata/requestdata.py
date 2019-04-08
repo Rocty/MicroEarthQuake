@@ -14,12 +14,12 @@ from eqdetector.eqdetector import EqDetector
 from eqpickup.eqpickup import EqPickup
 from location.location import Hyposat
 
+"""
+从AWS中获取定时获取数据。
+"""
+
 
 class RequestData(object):
-    '''
-    从AWS中获取定时获取数据。
-    '''
-
     def __init__(self):
         self.config = Config()
         self.stream_buffer = []
@@ -240,7 +240,8 @@ class RequestData(object):
                         write_Epi_depth = line[3]
 
                         # Cata_id 排序
-                        write_id_time = write_Net_code + '.' + time.strftime('%Y%m%d%H%M', time.strptime(line[0], '%Y-%m-%d %H:%M:%S'))
+                        write_id_time = write_Net_code + '.' + time.strftime('%Y%m%d%H%M', time.strptime(line[0],
+                                                                                                         '%Y-%m-%d %H:%M:%S'))
                         if write_id_time == self.Cata_id_last_id[:-5]:
                             write_id_time = write_id_time + '.%04d' % (int(self.Cata_id_last_id[-4:]) + 1)
                         else:
@@ -248,23 +249,23 @@ class RequestData(object):
                         self.Cata_id_last_id = write_id_time
                         write_id = write_id_time + '.' + 'A.001'
 
-
-
                         if line[4] == '':
                             write_M = -99999
                         else:
-                            write_M = float(line[4].split()[0]) - 1     # 需求：人为算小一级
+                            write_M = float(line[4].split()[0]) - 1  # 需求：人为算小一级
                         write_Rms = line[5]
 
                         # 超过2.5级不往数据库里写
                         if write_M <= 2.5:
                             print(
                                 "INSERT INTO Catalog(Auto_flag, id, Net_code, Save_time, Operator, O_time, Epi_lat, Epi_lon, Epi_depth, M, Rms) VALUES ('A', '%s', '%s', '%s', '%s', '%s', %s, %s, %s, %s, %s)" % (
-                                    write_id, write_Net_code, write_Save_time, write_Operator, write_O_time, write_Epi_lat,
+                                    write_id, write_Net_code, write_Save_time, write_Operator, write_O_time,
+                                    write_Epi_lat,
                                     write_Epi_lon, write_Epi_depth, write_M, write_Rms))
                             cur.execute(
                                 "INSERT INTO Catalog(Auto_flag, id, Net_code, Save_time, Operator, O_time, Epi_lat, Epi_lon, Epi_depth, M, Rms) VALUES ('A', '%s', '%s', '%s', '%s', '%s', %s, %s, %s, %s, %s)" % (
-                                    write_id, write_Net_code, write_Save_time, write_Operator, write_O_time, write_Epi_lat,
+                                    write_id, write_Net_code, write_Save_time, write_Operator, write_O_time,
+                                    write_Epi_lat,
                                     write_Epi_lon, write_Epi_depth, write_M, write_Rms))
                             db.commit()
                     except:
@@ -319,7 +320,6 @@ class RequestData(object):
             current_timestamp += 3600 * 24
 
     def main_thread(self):
-        ''
 
         while True:
             run_time = int(time.time())

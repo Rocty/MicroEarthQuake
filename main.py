@@ -1,8 +1,4 @@
-import tensorflow as tf
-
 from requestdata.requestdata import RequestData
-
-
 
 if __name__ == '__main__':
     request_data = RequestData()
