@@ -10,31 +10,28 @@
 参考https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository  
 和http://www.cnblogs.com/youran-he/p/9566059.html  
 
+`$ sudo apt-get update `  
+`$ sudo apt-get install \  `  
+`  apt-transport-https \  `  
+`  ca-certificates \  `  
+`   curl \   `  
+`software-properties-common ` 
 
+`$ sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak`  
+`$ sudo sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn' /etc/apt/sources.list`  
+`$ sudo apt update`  
+`$ curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg | sudo apt-key add -  `  
+`$ sudo add-apt-repository "deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu $(lsb_release -cs) stable"  `  
+`$ sudo apt update`  
+`$ sudo apt install docker-ce`  
 
-```
-$ sudo apt-get update
-$ sudo apt-get install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-software-properties-common
-
-$ sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
-$ sudo sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn' /etc/apt/sources.list
-$ sudo apt update
-$ curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
-$ sudo add-apt-repository "deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
-$ sudo apt update
-$ sudo apt install docker-ce
-```
 
 
 2.拉取镜像：  
 
-`$ sudo docker login`  
-账号：ustclinjf  
-密码：ustclinjf  
+`$ sudo docker login`   
+账号：`ustclinjf`  
+密码：`ustclinjf`  
 
 若CPU较新（支持AVX2.0指令集）：  
 `$ sudo docker pull ustclinjf/microearthquake:v0.1-cpu`  
@@ -51,16 +48,16 @@ $ sudo apt install docker-ce
 4.修改镜像时间：  
 1)先运行容器：  
 `$ sudo docker run -it --net=host -v /home/ahdy/Downloads/MicroEarthQuakce:/root/code --privileged=true ustclinjf/microearthquake:v0.1-cpu bash`  
-其中/home/ahdy/Downloads/MicroEarthQuake为存放代码文件地址，ustclinjf/microearthquake:v0.1-cpu为第二步容器版本，需根据实际情况更改。  
+其中`/home/ahdy/Downloads/MicroEarthQuake`为存放代码文件地址，`ustclinjf/microearthquake:v0.1-cpu`为第二步容器版本，需根据实际情况更改。  
 2)将容器放置后台运行：按Ctrl+P+Q（在Teamviewer上可能有按键冲突，需重复按几次才能生效）  
 3)查看容器ID：  
 `$ sudo docker ps –a`
-记下IMAGE为ustclinjf/microearthquake:{版本号}，STATUS距离当前最近的CONTAINER ID  
+记下IMAGE为`ustclinjf/microearthquake:{版本号}`，STATUS距离当前最近的CONTAINER ID  
 4)修改时间：  
 `$ sudo docker cp /etc/localtime {containerid}:/etc/localtime`  
   
 5.修改hyposat权限：  
-进入代码文件MicroEarthQuake/location/hyposat.6_0d/bin  
+进入代码文件`MicroEarthQuake/location/hyposat.6_0d/bin `  
 然后执行：  
 `$ sudo chmod 777 hyposat`
   
@@ -70,10 +67,8 @@ $ sudo apt install docker-ce
 7.执行程序：  
 执行代码文件MicroEarthQuake/main.py，已挂在在容器环境中的/root/code：  
 
-```
-$ python /root/code/main.py  
 
-```
+`$ python /root/code/main.py`   
 
 
 Ⅱ.有GPU版本：
@@ -82,17 +77,17 @@ $ python /root/code/main.py
 3.安装nvidia-docker  
 4.拉取镜像：  
 `$ sudo docker login`  
-账号：ustclinjf
-密码：ustclinjf
+账号：`ustclinjf`  
+密码：`ustclinjf`  
 `$ sudo docker pull ustclinjf/microearthquake:v0.1`  
 5.修改镜像时间：  
 将容器版本修改为ustclinjf/microearthquake:v0.1  
 运行容器命令：  
 
-```
-$ sudo docker run -it --runtime=nvidia --net=host -v /home/ahdy/Downloads/MicroEarthQuakce:/root/code --privileged=true ustclinjf/microearthquake:v0.1 bash
 
-```
+`$ sudo docker run -it --runtime=nvidia --net=host -v /home/ahdy/Downloads/MicroEarthQuakce:/root/code --privileged=true ustclinjf/microearthquake:v0.1 bash`
+
+
 
 6修改hyposat权限：同上  
 
@@ -107,7 +102,7 @@ $ sudo docker run -it --runtime=nvidia --net=host -v /home/ahdy/Downloads/MicroE
 
 1.查看容器ID  
 `$ sudo docker ps -a`  
-记下IMAGE为ustclinjf/microearthquake:{版本号}，STATUS距离当前最近的CONTAINER ID  
+记下IMAGE为`ustclinjf/microearthquake:{版本号}`，STATUS距离当前最近的CONTAINER ID  
 
 2.启动docker 环境：  
 `$ sudo docker attach {上一步记录的ID}`  
