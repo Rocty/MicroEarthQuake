@@ -1,0 +1,16 @@
+2019-04-08 11:20:54,846 - requestdata.requestdata - INFO - Reading data from AWS error, station:SC.BEXJ.00
+2019-04-08 11:20:54,846 - requestdata.requestdata - ERROR - [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+Traceback (most recent call last):
+  File "D:\Project\ADT\Python\MicroEarthQuake\requestdata\requestdata.py", line 108, in AWS_get_data
+    resp, content = h.request(tmp_url)
+  File "C:\Environment\Python\Anaconda3\envs\tfg\lib\site-packages\httplib2\__init__.py", line 1924, in request
+    cachekey,
+  File "C:\Environment\Python\Anaconda3\envs\tfg\lib\site-packages\httplib2\__init__.py", line 1595, in _request
+    conn, request_uri, method, body, headers
+  File "C:\Environment\Python\Anaconda3\envs\tfg\lib\site-packages\httplib2\__init__.py", line 1501, in _conn_request
+    conn.connect()
+  File "C:\Environment\Python\Anaconda3\envs\tfg\lib\site-packages\httplib2\__init__.py", line 1207, in connect
+    raise socket_err
+  File "C:\Environment\Python\Anaconda3\envs\tfg\lib\site-packages\httplib2\__init__.py", line 1181, in connect
+    self.sock.connect((self.host, self.port) + sa[2:])
+TimeoutError: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。

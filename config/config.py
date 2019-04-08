@@ -11,7 +11,6 @@ class RequestDataConfig(object):
                 self.monitor_station.append(station)
         # self.monitor_station = self.monitor_station[20:23]
 
-
         self.buffer_time = 3600 * 24  # 缓冲时间，处理数据与当前时间的差
         self.buffer_window_time = self.request_time  # 缓冲区时间长度，处理数据时间长度
 
@@ -31,7 +30,6 @@ class DLTraditionModelConfig(object):
         self.ps_rwinsize = 100      # s * 100
         self.min_p_s_time = 25      # s * 100
 
-
 class Config(object):
     def __init__(self):
         self.request_data_config = RequestDataConfig()
@@ -40,11 +38,6 @@ class Config(object):
         self.window_lag_time = 15   # 扫描窗口时间跨度
         self.detect_window_size = 45
         self.pickup_window_size = 60
-
-
-
-
-
 
 if __name__ == '__main__':
     config = Config()
