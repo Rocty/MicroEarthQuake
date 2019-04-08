@@ -103,7 +103,6 @@ $ sudo docker run -it --runtime=nvidia --net=host -v /home/ahdy/Downloads/MicroE
 
 
 ## 启动流程  
-以下每行以 $ 开头，即 $ 开始为一行，中间不断行。{XXX}需根据不同机器环境做修改（{}花括号不用打） 
 
 1.查看容器ID  
 `$ sudo docker ps -a`  
