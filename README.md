@@ -42,7 +42,7 @@
 若CPU较旧：  
 `$ sudo docker pull ustclinjf/microearthquake:v0.1-cpu-tf1.5`  
 
-#3.修改台站数据信息：
+3.修改台站数据信息：
 
 具体修改代码文件`MicroEarthQuake/config/monitor_station.txt`文件，将其修改为需监控的台站名，格式参照该文件。（注意：目前只监控00台站，所以只填写00台站）  
 
