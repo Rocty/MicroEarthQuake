@@ -1,0 +1,14 @@
+#
+#
+run tele
+run net
+run regional
+run single_array
+run_hypomod_example
+#
+#run_ok tele
+#run_ok net
+#run_ok regional
+#run_ok single_array
+
+\rm hyposat-in hyposat-out hyposat-parameter hypomod-in hypomod-out

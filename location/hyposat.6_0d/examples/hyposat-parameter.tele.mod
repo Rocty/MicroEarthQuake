@@ -1,0 +1,67 @@
+  hyposat-parameter
+
+GLOBAL MODEL                       : ak135_A
+GLOBAL MODEL 2                     : iasp91_A
+GLOBAL MODEL 3                     : _
+GLOBAL MODEL 4                     : _
+
+LOCAL OR REGIONAL MODEL            : _
+PHASE INDEX FOR LOCAL MODEL        : 0000
+
+CRUST 1.0                          : 0
+OUTPUT OF REGIONAL MODEL (DEF 0)   : 1
+
+STATION FILE                       : ../data/stations.dat
+P-VELOCITY TO CORRECT ELEVATION    : 4.5 
+S-VELOCITY TO CORRECT ELEVATION    : 0.
+STATION CORRECTION FILE            : stations.cor
+
+LG GROUP-VELOCITY (DEF 3.5  [km/s]): 3.5752 
+RG GROUP-VELOCITY (DEF 2.5  [km/s]): 2.5
+
+LQ GROUP-VELOCITY (DEF 4.4  [km/s]): 4.4
+LR GROUP-VELOCITY (DEF 3.95 [km/s]): 2.85
+
+STARTING SOURCE LATITUDE  [deg]    : 1.3237
+STARTING LATITUDE ERROR   [deg]    : 50.
+
+STARTING SOURCE LONGITUDE [deg]    : 126.2875 
+STARTING LONGITUDE ERROR  [deg]    : 50.
+
+STARTING SOURCE DEPTH     [km]     : 47.15
+STARTING DEPTH ERROR      [km]     : 50.
+DEPTH FLAG (f,b,d,F,B,D)           : b 
+
+STARTING SOURCE TIME (human format): 1996-06-29:00:36:49.480
+STARTING TIME ERROR       [s]      : 600.  
+
+MAXIMUM # OF ITERATIONS            : 80 
+# TO SEARCH OSCILLATIONS (DEF 4)   : 6
+
+LOCATION ACCURACY [km] (DEFAULT 1.): 1. 
+CONSTRAIN SOLUTION (0/1)           : 1
+
+CONFIDENCE LEVEL  (68.3 - 99.99 %) : 0.
+EPICENTER ERROR ELLIPSE (DEF 1)    : 1
+
+SLOWNESS [S/DEG] ( 0 = APP. VEL)   : 1 
+
+MAXIMUM AZIMUTH ERROR     [deg]    : 30. 
+MAXIMUM SLOWNESS ERROR    [s/deg]  : 5.
+
+FLAG USING TRAVEL-TIME DIFFERENCES : 1
+
+MAGNITUDE CALCULATION (DEF 0)      : 1
+P-ATTENUATION MODEL (G-R or V-C)   : G-R
+MS-ATTENUATION MODEL (IASPEI / R-P): R-P
+
+INPUT FILE NAME (DEF hyposat-in)   : _
+HYPOSAT-IN OLD SYNTAX        (0/1) : 0
+
+FLAG EMERGENCE ANGLE OUTPUT        : 1
+
+OUTPUT SWITCH  (YES = 1, DEFAULT)  : 1
+OUTPUT FILE NAME (DEF hyposat-out) : _
+OUTPUT LEVEL                       : 4 
+
+FLAG FREE PHASE SEARCH  (DEF 0)    : 1

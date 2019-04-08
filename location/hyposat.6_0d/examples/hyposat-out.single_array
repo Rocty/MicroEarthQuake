@@ -1,0 +1,96 @@
+HYPOSAT Version 6.0d
+
+Event solution by HYPOSAT
+
+GERESS 1996-205:04.08
+
+
+Parameters of initial solution (+/- 1 standard deviation):
+
+No location from multiple azimuth observations found. Missing backazimuth values?
+Epicenter set from station GERES with backazimuth 243.2 [deg], delta 586.95 [km]
+Epicenter lat:   46.261 [deg]
+Epicenter lon:    6.896 [deg]
+
+Source time (set):  838094725.400 [s]
+
+Iterations        :    2
+Number of defining:    2
+Reference models  : loc.dat and ak135_A             
+
+The new source parameters:
+
+Confidence level of given uncertainties:  95.00 %
+
+Source time  : 1996 07 23 04 08 18.534 +/-    2.059 [s]
+        or               838094898.534 +/-    2.059 [s]
+        or       1996-205:04.08.18.534 +/-    2.059 [s]
+
+
+Epicenter lat:                 46.5958 +/-   0.0740 [deg]
+Epicenter lon:                  7.2747 +/-   0.1131 [deg]
+Source depth :                  0.00   [km] Fixed
+
+Source time corrected for mean travel-time residual (  53.134)
+
+Iterations        :    2
+Number of defining:    6
+Reference models  : loc.dat and ak135_A             
+
+The new source parameters:
+
+Confidence level of given uncertainties:  95.00 %
+
+Source time  : 1996 07 23 04 09 11.668 +/-    0.483 [s]
+        or               838094951.668 +/-    0.483 [s]
+        or       1996-205:04.09.11.668 +/-    0.483 [s]
+
+
+Epicenter lat:                 46.4317 +/-   0.1499 [deg]
+Epicenter lon:                  7.4165 +/-   0.1373 [deg]
+Source depth :                  0.00   [km] Fixed
+
+Epicenter error ellipse:
+Major half axis:    21.80 [km]  Minor half axis:     4.67 [km]
+Azimuth:      153.6  [deg] Area:         319.97 [km**2]
+
+Flinn-Engdahl Region ( 544 ): WESTERN SWISS ALPS
+
+ Stat  Delta   Azi   Phase   [used]    Onset time    Res     Baz     Res   Rayp   Res  Used                                       Q Em-Ang
+
+GERES   4.886  58.11 Pn               04 10 25.400   0.000 242.40   -0.34 13.40  -0.26 TAS                                        e  41.57
+GERES   4.886  58.11 Sg               04 12  2.900   0.000 244.10    1.36 33.70  -0.98 TAS                                        e  75.18
+
+Number of usable stations:    1
+
+Total number of iterations:     4
+
+Residuals of defining data          RMS    MEAN-ERROR      MEAN
+     2 onset times             :    0.000       0.000     -0.000  [s]
+     2 backazimuth values      :    0.991       0.850      0.510  [deg]
+     2 ray parameters          :    0.715       0.619     -0.619  [s/deg]
+
+Weighted RMS of onset times (ISC type):    0.000 [s]
+
+Weighted misfit of input data         L1      L2
+     2 onset times             :    0.000    0.000
+     2 backazimuth values      :    0.102    0.108
+     2 ray parameters          :    0.375    0.392
+     6 misfit over all         :    0.159    0.235
+
+T0                         LAT      LON       Z     VPVS   DLAT     DLON      DZ       DT0    DVPVS DEF    RMS
+1996-07-23 04 09 11.668   46.432    7.417    0.00   0.00   0.1499   0.1373  Fixed     0.483   0.00    6    0.000
+
+Local model loc.dat used (max. delta = 20.00 deg):
+    DEPTH       VP        VS    DISCON
+     0.000     5.400     3.100      
+    10.000     5.800     3.200      
+    20.000     5.800     3.200  CONR
+    20.000     6.500     3.600      
+    30.000     6.800     3.900  MOHO
+    30.000     8.100     4.500      
+    77.500     8.050     4.400      
+   120.000     8.100     4.500      
+
+P velocity in source depth:   5.40
+S velocity in source depth:   3.10

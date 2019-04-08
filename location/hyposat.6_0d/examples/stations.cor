@@ -1,0 +1,29 @@
+*
+* This is a file containing values to calculate corrections
+* for the listed stations only
+*
+* All lines starting with a star '*' are ignored.
+*
+* Minimum input:
+*
+* Station name and local P and S velocities to calculate
+* elevation effect
+*
+*      vp  vs
+*GERES 5.2 3.2
+*
+* Optional input (e.g., to correct for results from
+* tomographic studies or clock errors):
+*
+* Static corrections for P and S body waves
+*
+*      vp  vs  dtp dts
+*GERES 5.2 3.2 0.0 0.0
+*
+* Additonal static corrections for surface waves
+*
+*      vp  vs dtp dts dtsurface
+*GERES 5.2 3.2 0.0 0.0 0.0
+*
+GERES 5.2 3.2 0.0 0.0 0.0                     | in free format
+

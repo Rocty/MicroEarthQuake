@@ -1,0 +1,63 @@
+  hyposat-parameter
+
+GLOBAL MODEL                       : iasp91_A
+*GLOBAL MODEL 2                     : ak135_A
+
+GLOBAL CRUSTAL MODEL CODE          : E4
+
+LOCAL OR REGIONAL MODEL            : _
+PHASE INDEX FOR LOCAL MODEL        : 3333
+CRUST 1.0                          : 4
+
+OUTPUT OF REGIONAL MODEL (DEF 0)   : 1
+
+STATION FILE                       : ./data/stations.dat
+STATION CORRECTION FILE            : _
+
+P-VELOCITY TO CORRECT ELEVATION    : -1.
+S-VELOCITY TO CORRECT ELEVATION    : -1.
+
+STARTING SOURCE TIME (EPOCHAL TIME): 0.
+STARTING TIME ERROR       [s]      : 0. 
+
+STARTING SOURCE DEPTH     [km]     : 1. 
+STARTING DEPTH ERROR      [km]     : 0. 
+DEPTH FLAG (f,b,d,F,B,D)           : d 
+
+STARTING SOURCE LATITUDE  [deg]    : 999. 
+STARTING LATITUDE ERROR   [deg]    : 10. 
+
+STARTING SOURCE LONGITUDE [deg]    : 999. 
+STARTING LONGITUDE ERROR  [deg]    : 10. 
+
+MAGNITUDE CALCULATION (DEF 0)      : 1
+P-ATTENUATION MODEL (G-R or V-C)   : V-C
+MS-ATTENUATION MODEL (IASPEI / R-P): R-P
+ML-ATTENUATION MODEL               : Richter
+
+MAXIMUM # OF ITERATIONS            : 80 
+# TO SEARCH OSCILLATIONS (DEF 4)   : 6
+
+LOCATION ACCURACY [km] (DEFAULT 1) : 1.
+CONSTRAIN SOLUTION (0/1)           : 1
+
+CONFIDENCE LEVEL  (68.3 - 99.99 %) : 95.
+EPICENTER ERROR ELLIPSE (DEF 1)    : 1
+
+MAXIMUM AZIMUTH ERROR     [deg]    : 20. 
+MAXIMUM SLOWNESS ERROR    [s/deg]  : 3.
+
+SLOWNESS [S/DEG] ( 0 = APP. VEL)   : 1 
+
+FLAG USING TRAVEL-TIME DIFFERENCES : 1
+
+INPUT FILE NAME (DEF hyposat-in)   : _
+HYPOSAT-IN OLD SYNTAX        (0/1) : 1
+
+FLAG EMERGENCE ANGLE OUTPUT        : 1
+
+OUTPUT FILE NAME (DEF hyposat-out) : _
+OUTPUT SWITCH  (YES = 1, DEFAULT)  : 1
+OUTPUT LEVEL                       : 4 
+
+OUTPUT FORMAT ISF      (DEF 0)     : 1

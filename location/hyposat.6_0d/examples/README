@@ -1,0 +1,17 @@
+This directory contains examples of input and output 
+files for the location program HYPOSAT version 6.0 .
+
+Copy one type of input files (named with a common
+extension .single_array, .net, .regional, or .tele) 
+to hyposat-in and hyposat-parameter. 
+
+Run hyposat and compare the hyposat-out with the 
+corresponding output.
+
+Or just run the attached script 'run param' with 
+param = single_array, net, regional, or tele
+
+E.g., 'run tele'
+
+To run an example for HYPOMOD please just run the 
+script run_hypomod_example.

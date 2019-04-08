@@ -1,0 +1,1131 @@
+
+*    hyposat-parameter file for HYPOSAT 6.
+*
+* Any blank line or lines starting with a '*' are ignored.
+*
+* All default values are set by the program at start.
+*
+
+*
+* Event source solution author: a free character string with 
+* maximum 10 characters
+*
+AUTHOR OF SOLUTION                 : HYPOSAT
+
+
+*
+**** SEISMIC VELOCITY MODEL RELATED PARAMETERS (TRAVEL-TIME 
+*    TABLE):
+*
+
+*
+* GLOBAL MODEL: Type of the reference spherical velocity model
+* used to calculate all travel-time related theoretical data. 
+* This package contains the following models:
+
+*   ak135_A      AK135 model (Kennett et al., 1995)
+*   iasp91_A     IASP91 model (Kennett, 1991; Kennett & 
+*                Engdahl, 1991)
+*   iasp91a_A    IASP91, with a corrected core model
+*   jb_A         Jeffreys-Bullen model (Jeffreys & Bullen, 
+*                1940 and later)
+*   prem_A       PREM model (Dziewonski & Anderson, 1981)
+*   sp6_A        SP6 model (Morelli & Dziewonski, 1993)
+*
+* Some additional, regional spherical Earth models with 
+* different crusts and uppermost mantle layers were also 
+* implemented in the HYPOSAT software package:
+*
+*   barey_A      BAREY, regional model for the European Arctic
+*                (Schweitzer & Kennett, 2007)
+*   barez_A      BAREZ, regional model for the European Arctic
+*                (Schweitzer & Kennett, 2007)
+*   barents16_A  BARENTS16, regional model for the western 
+*                Barents Sea (Pirli & Schweitzer, 2017)
+*   bergen_A     University of Bergen's velocity model for 
+*                Norway (Havskov & Bungum, 1987)
+*   fescan_A     NORSAR's Fennoscandia model (Mykkeltveit & 
+*                Ringdal, 1981)
+*
+* The directory, where these travel-time tables reside, must 
+* be specified with HYPOSAT_DATA before the program can start. 
+* The travel-time tables are based on the libtau-software 
+* package (Buland & Chapman, 1983), and distributed as 
+* IASP91-software.
+*
+* All global travel-time models using the libtau-software were
+* recalculated for the HYPOSAT package, stored in ASCII format 
+* and got the suffix '_A' in their table names.
+*
+* The default global model is 'ak135_A'
+*
+GLOBAL MODEL                       : ak135_A
+
+*
+* Alternative spherical Earth models can be used for specific 
+* paths:
+*
+* GLOBAL MODEL 2: Here one can give the name of any other
+* second global model to be used for specific ray paths as 
+* indicated in the data input file hyposat-in.
+*
+GLOBAL MODEL 2                     : ak135_A
+
+*
+* GLOBAL MODEL 3: Here one can give the name of any other 
+* third global model to be used for specific ray paths as 
+* indicated in the data input file.
+*
+GLOBAL MODEL 3                     : ak135_A
+
+*
+* GLOBAL MODEL 4: Here one can give the name of any other 
+* fourth global model to be used for specific ray paths as 
+* indicated in the data input file.
+*
+GLOBAL MODEL 4                     : ak135_A
+
+*
+* That HYPOSAT can apply crustal corrections, the seismic 
+* velocities in the crust must be known for the chosen 
+* dominant global model (set with GLOBAL MODEL). The crustal 
+* structures of all libtau-type models are collected in a file 
+* called std_crusts.dat and marked with a unique code. This 
+* file must reside in the same directory as defined by 
+* HYPOSAT_DATA. std_crusts.dat is included in the directory 
+* data/. The different codes are:
+*
+*   E1      Jeffreys-Bullen (global standard model)
+*   E2      PREM    (global standard model)
+*   E3      IASP91  (global standard model)
+*   E4      IASP91a (global standard model, with corrected 
+*                    core)
+*   E5      SP6     (global standard model)
+*   E6      AK135   (global standard model)
+*   E7      FESCAN  (regional standard model)
+*   E8      BAREY   (regional standard model)
+*   E8      BAREZ   (regional standard model)
+*   EA      BARENTS16 (regional standard model)
+*   EB      BERGEN  (regional standard model)
+*   The default value is 'E6' (for AK135)
+*
+GLOBAL CRUSTAL MODEL CODE          : E6
+
+*
+* In the case of an ISF-formatted input file, no alternative 
+* spherical Earth models can be defined. Instead, an 
+* epicentral distance in [deg] can be defined, from which 
+* distance on GLOBAL MODEL 2 should be used. As epicentral 
+* distance the value from the ISF-formatted input file is 
+* used.
+*
+* The default value is '999.' = no 2nd model usage with ISF 
+* input.
+*
+ISF_2ND MODEL DISTANCE             : 999.
+
+*
+* HYPOSAT can combine global velocity models with an 
+* epicentral distance dependent LOCAL OR REGIONAL MODEL. 
+* Travel times will be calculated for the following seismic 
+* phases (as far as they can be observed with respect to 
+* distance and source depth): Pg, Pb, Pn, P, pPg, pPb, pPn, 
+* pP, PbP (i.e., in this program the upper side reflection 
+* from the 'Conrad'), PmP, PgPg, PbPb, PnPn, PP, and the 
+* converted phases sPg, sPb, sPn, sP, SbP and SmP. The same 
+* set of phases is also calculated for S-type phases, 
+* respectively.
+*
+* If the file is not in the run-directory or the directory 
+* defined by HYPOSAT_DATA, one must give the full file name 
+* including its path.
+*
+* Set to '_' if no local model is used.
+*
+LOCAL OR REGIONAL MODEL            : _
+
+* Local/regional travel-time models are either used around the
+* source and/or to calculate travel-time corrections for 
+* reflection points of phases at the Earth's surface or for 
+* crustal differences between the dominant global model and 
+* the actual structure at the stations (velocities & 
+* elevation). The input is the name of the file containing the 
+* model parameters. The velocity model must contain the 
+* following information:
+*
+* In the first line maxdis = maximum distance in [deg] for 
+* which this model shall be used. It is followed by lines with 
+* depth in [km], the P-phase velocity Vp in [km/s], and the S-
+* phase velocity Vs in [km/s]. The model may contain layers 
+* with a constant velocity or with velocity gradients. First 
+* order discontinuities must be specified with two lines for 
+* the same depth. Additionally, the Conrad- and the 
+* Mohorovi'i'-discontinuities must be marked as shown in the 
+* following example. Otherwise, all calculated phases would be 
+* called Pg (or Sg, respectively). The maximum number of 
+* layers is set to 100.
+*
+* See file ../examples/loc.dat
+*
+*
+* When using the local/regional model for calculating 
+* local/regional travel-time tables and their partial 
+* derivatives, one can define the seismic phase types to be 
+* considered by a 4-digit number code: The position of a digit 
+* defines the phase type for which the value of the digit 
+* defines the action for this phase:
+*
+*   dxxx    the digit (d) at this place is the flag for 
+*           surface reflections (e.g., pP or sS)
+*   xdxx    the digit (d) at this place is the flag for 
+*           surface multiples (e.g., PP or SS)
+*   xxdx    the digit (d) at this place is the flag for 
+*           reflections at the Conrad- or the Mohorovi'i'-
+*           discontinuity (e.g., PbP or SmS). Note that here 
+*           the name 'PbP' is used to indicate reflection 
+*           from the Conrad discontinuity, is not a regular 
+*           phase name as recommended by IASPEI (e.g., 
+*           NMSOP-2, IS 2.1).
+*   xxxd    the digit (d) at this place is the flag for 
+*           converted phases (e.g., sP or PmS)
+*    d      itself can have the following values:
+*    d = 1  only P-type onsets will be calculated
+*    d = 2  only S-type onsets will be calculated
+*    d = 3  both phase types (P and S) will be calculated 
+* e.g., 1320 means: 
+*           the phases pP, PP, SS, SbS and SmS will be 
+*           calculated, but no conversions. 
+*   0000 or simply 0 means: 
+*           only the direct P- and/or S-onsets, but none of 
+*           the reflected and/or converted phases will be
+*           calculated.
+*
+* The default value is set to '3333' and for any value below 
+* 0, the program will ignore the local/regional model set by
+* LOCAL OR REGIONAL MODEL.
+*
+PHASE INDEX FOR LOCAL MODEL        : 3333
+
+*
+* The following settings are steering the usage of the 1x1 
+* degree crustal model CRUST 1.0 of Laske et al. (2013) 
+* together with the other local/regional velocity models.
+*
+* <= 0       no usage of CRUST 1.0 or LOCAL OR REGIONAL MODEL
+*            (default)
+*  = 1       only the local/regional model is used as defined 
+*            in LOCAL OR REGIONAL MODEL.
+*  = 2       CRUST 1.0 only used for calculating travel-time
+*            corrections at stations and for surface 
+*            reflections (e.g., PnP, sS, P'P',...).
+*  = 3       CRUST 1.0 is used to calculate travel times to 
+*            stations with a maximum distance of 1.5 degrees 
+*            from the source.
+*  = 4       combines options (3) and (4).
+*
+CRUST 1.0     (0/1/2/3/4)          : 0
+
+*
+* If set, the applied local/regional model around the source 
+* is listed at the end of the output file hyposat-out.
+*
+OUTPUT OF REGIONAL MODEL   (DEF 0) : 0
+
+*
+* Set VERY LOCAL GEOMETRY if all the stations are within an
+* epicentral distance of less than about 50 km and a
+* LOCAL OR REGIONAL MODEL is given.
+*
+* If VERY LOCAL GEOMETRY is set, the ray-tracing algorithm is
+* adjusted for denser ray coverage to calculate the travel 
+* times for the different local/regional phases and no 
+* ellipticity corrections for the travel times are applied.
+*
+VERY LOCAL GEOMETRY    (DEF 0) 0/1 : 0
+
+*
+* The program can use different types of surface waves, for 
+* which mean group velocities can be set as e.g.:
+*
+RG GROUP-VELOCITY  (DEF 2.5  km/s) : 2.5
+LG GROUP-VELOCITY  (DEF 3.5  km/s) : 3.5
+
+LQ GROUP-VELOCITY  (DEF 4.4  km/s) : 4.4
+
+LR GROUP-VELOCITY  (DEF 3.95 km/s) : 3.95
+
+*
+* Infrasound onsets and T-phases can also be included. Onset 
+* times of these phases are not well defined, but mean group 
+* velocities can be used to identify such onsets. 
+*
+
+*
+* Infrasound mean group velocity
+*
+IS PHASE GROUP-VEL (DEF 0.33 km/s) : 0.33
+
+*
+* T-phase mean group velocity
+*
+T PHASE GROUP-VEL   (DEF 1.4 km/s) : 1.45
+
+*
+* The model uncertainty can be defined as the mean uncertainty 
+* of the travel-time table.
+*
+* The default value is no model uncertainty ('0').
+*
+INCLUDING MODEL UNCERTAINTY  (0/1) : 0
+
+*
+* The uncertainties can be given separately for P and S phases 
+* in [s], but are assumed to be distance independent and equal 
+* for all phases of the same type (P or S).
+*
+* The uncertainties will be used to calculate ray parameter 
+* and distance dependent uncertainties for the different 
+* observations, which will be added to the calculated standard 
+* deviations of the source parameters after the last 
+* iteration.
+*
+* The default values are set to 0.01 s for both P and S 
+* phases.
+*
+MEAN P-WAVE MODEL UNCERTAINTY  [s] : 0.01
+MEAN S-WAVE MODEL UNCERTAINTY  [s] : 0.01
+
+
+**** STATION RELATED PARAMETERS
+
+*
+* Definition of the file containing the station coordinates. 
+* Two formats are supported: CSS3.0 and PDE. The file format
+* is detected automatically. To get the location results 
+* faster, the usage of a file containing only the actually 
+* used stations is recommended.
+*
+* The default file name is 'stations.dat'
+*
+STATION FILE                       : ./stations.dat
+
+*
+* Defines if station corrections (elevation, crust) will be 
+* applied. By default, this is switched on '1'.
+*
+STATION CORRECTIONS    (DEF 1) 0/1 : 1
+
+*
+* Global velocities in [km/s] for elevation corrections can be 
+* set here:
+* All values below 0.001 and above 99. km/s are ignored and 
+* the AK135 values are used as default.
+*
+* If S-VELOCITY TO CORRECT ELEVATION is set to 0. and 
+* P-VELOCITY TO CORRECT ELEVATION is defined earlier, the 
+* S-VELOCITY TO CORRECT ELEVATION is calculated by 
+* P-VELOCITY TO CORRECT ELEVATION divided by sqrt(3.).
+*
+*P-VELOCITY TO CORRECT ELEVATION    : 99.1            > AK135
+*S-VELOCITY TO CORRECT ELEVATION    : 99.1            > AK135
+*P-VELOCITY TO CORRECT ELEVATION    : 5.56              JB
+*S-VELOCITY TO CORRECT ELEVATION    : 3.37              JB
+*
+P-VELOCITY TO CORRECT ELEVATION    : 5.80             AK135
+S-VELOCITY TO CORRECT ELEVATION    : 3.46             AK135
+
+*
+* Fixed station corrections or local velocities at stations 
+* can be added in a file and will be used to correct for
+* elevation or timing errors. Corrections are separate for P 
+* and S waves. This value can also be used to correct for a
+* known velocity anomaly below a station. The input is format 
+* free. If such information is not available, leave it blank. 
+* If a station is not in this list, the default values as 
+* defined by the input parameters
+* P-VELOCITY TO CORRECT ELEVATION and
+* S-VELOCITY TO CORRECT ELEVATION are used
+*
+* See file ../examples/stations.cor
+*
+STATION CORRECTION FILE            : _
+
+*
+* If the station corrections in the STATION CORRECTION FILE 
+* file are only valid for the 1st onsets of the P or S phase 
+* (as e.g., if calculated with velest), this switch must be 
+* set to '1'.
+*
+* By default, the station corrections are used for all onsets 
+* from the particular station.
+*
+STATION CORR ONLY 1ST PHASE  (0/1) : 0
+
+*
+* In the case of a very local geometry, stations may be
+* located below the surface (e.g., in mines). Then one must
+* set this switch to '1'.
+* 
+* The default value is '0'.
+*
+LOCAL STATION BELOW SURFACE  (0/1) : 0
+
+*
+* Maximun and minimum epicentral distance of stations to be
+* considered during the inversion. Both distances are by 
+* default in [deg]. But if the inversion output is set to [km] 
+* with OUTPUT IN KM (see below), both MIN EPI DIST OF STAT and
+* MAX EPI DIST OF STAT are also in [km].
+*
+MIN EPI DIST OF STAT (DEF   0 deg) : 0.
+MAX EPI DIST OF STAT (DEF 180 deg) : 180.
+
+
+**** SOURCE RELATED PARAMETERS
+
+*
+* The program has different ways to calculate a preliminary
+* epicenter and source time. This can be steered with 
+* different parameters. In any case, any value given directly 
+* as initial value, will overwrite all estimated values.
+*
+* The following parameters are defining an initial solution 
+* including its uncertainties:
+
+*
+* Source time:
+*
+* To set an initial source time the allowed formats are:
+*    Epochal time (= seconds since 01/01/1970 00:00:00)
+*    allowed is any number larger than -2840140800.0
+*    (= default = 1 January 1880)
+*
+* or (seconds can be omitted):
+*    yyyy-doy:hh.mi.ss.sss     (doy = Day of year)
+* or
+*    yyyy-mm-dd:hh.mi.ss.sss
+*
+* Any time earlier than the default value will be ignored. 
+*
+*STARTING SOURCE TIME               : 1970-001:00.00.00.000
+* or
+*STARTING SOURCE TIME               : 1970-01-01:00.00.00.000
+* or 
+STARTING SOURCE TIME (EPOCHAL TIME): 0.
+STARTING TIME ERROR            [s] : 10.0 
+
+*
+* If no STARTING SOURCE TIME is set, an initial source time 
+* will be estimated from the travel-time differences between 
+* direct S-type and direct P-type observations by using 
+* Wadati's approach (Wadati, 1933). For this, the program 
+* calculates mean Vp/Vs ratios for each phase type and 
+* estimates a source time, respectively. The phase types 
+* (Pg & Sg, Pb & Sb, Pn & Sn, P & S) are identified with help 
+* of the global model AK135. The initial source time is then 
+* the mean value of all estimated source times. In the case of 
+* only one S-P observation, the Vp/Vs ratio is set to 1.72 = 
+* sqrt(3). If no S-P time observation is available, the source 
+* time is set to the earliest observed onset time.
+
+* The Wadati approach can be steered by the length of the 
+* allowed S-type - P-type travel-time differences.
+*
+MIN DT FOR WADATI     (DEF   0. s) : 0.
+MAX DT FOR WADATI     (DEF 150. s) : 150.
+
+*
+* Depth:
+*
+
+*
+* Set source depth, the default depth is 0. +/- 20. km
+*
+STARTING SOURCE DEPTH         [km] : 0.
+STARTING DEPTH ERROR          [km] : 20.
+
+*
+* The allowed depth range can be set. At this moment, the 
+* program does not allow any sources with negative depth (= 
+* models with topography above the sea level, see also 
+* DEPTH ALLOWED ABOVE 0).
+*
+MINIMUM DEPTH          (DEF 0. km) : 0.
+MAXIMUM DEPTH        (DEF 800. km) : 800.
+
+*
+* Flags steering the depth determination during inversion
+*
+*   f (or F)  = fixed depths at STARTING SOURCE DEPTH
+*   d (or D)  = a new depth is determined from the beginning 
+*               for each inversion step.
+*   b (or B)  = both, the inversion starts with a fixed depth 
+*               and when an epicenter is found, the inversion 
+*               continues with inverting also for the depth.
+* By default this flag is set to 'F'. 
+*
+DEPTH FLAG           (f,b,d,F,B,D) : F
+
+*
+* Epicenter:
+*
+* If backazimuth observations are available from several 
+* stations, these data are used to calculate an epicenter by 
+* calculating the possible crossing points of these different 
+* observations. A start epicenter including its uncertainties 
+* is then calculated as mean value of all crossing points and 
+* their spread.
+*
+* If possible and no backazimuth observations are available, 
+* the program tries a plane-wave fit through first P-wave 
+* onsets at all stations to get an azimuth direction to the 
+* epicenter. Then if possible, S - P travel-time differences 
+* are used to estimate an epicentral distance and a start 
+* epicenter is calculated.
+*
+* By default, this option is switched on '1'.
+*
+PLANE WAVE APPROX            (0/1) : 1
+
+*
+* Latitude:
+*
+* Allowed range -90 - +90 degrees; all other values are 
+* ignored.
+*
+STARTING SOURCE LATITUDE     [deg] : 999.
+STARTING LATITUDE ERROR      [deg] : 10.
+*
+* Longitude:
+*
+* Allowed range -180 - +180 degrees; all other values are 
+* ignored.
+*
+STARTING SOURCE LONGITUDE    [deg] : 999.
+STARTING LONGITUDE ERROR     [deg] : 20.
+
+*
+* The ISF solution (or only parts like epicenter and/or depth) 
+* can be used as start (and reference) solution.
+*
+* By default, both flags are switched off '0'.
+*
+ISF EPICENTER                (0/1) : 0
+ISF DEPTH                    (0/1) : 0
+
+
+**** GENERAL INVERSION PROCESS STEERING PARAMETERS
+
+*
+* The maximum is set by default to 80 iterations
+*
+MAXIMUM # OF ITERATIONS            : 80 
+
+*
+* The iterations stop when two consecutive solutions are 
+* separated less than the given accuracy in [km].
+*
+LOCATION ACCURACY      (DEF 1. km) : 0.5 
+
+*
+*  Confidence level of modelled uncertainties in [%] 
+* probability. The default value is 68.3 % (i.e., +/- 1 
+* standard deviation)
+*
+CONFIDENCE LEVEL  (68.3 - 99.99 %) : 95.
+
+*
+* In some cases, the inversion result is oscillating between 
+* two or more solutions. The following parameter defines how 
+* many iterations back we search for such oscillations. The 
+* maximum number allowed is 15; the default value is 4.
+*
+# TO SEARCH OSCILLATIONS           : 4 
+
+*
+* In the case that the mean residuum of all defining travel 
+* times is unequal 0., the source time can be corrected to 
+* compensate for this mean shift.
+*
+* By default, this option is switched on '1'.
+*
+MEAN T-T RES. CORREC         (0/1) : 1
+
+*
+* The last iteration can constrain the solution by 
+* concentrating on the most trustable/important data. Five 
+* different cases are implemented:
+*
+*   0 = default, no final constraining
+*   1 = final constraining of the solution by removing data 
+*       with larger residuals
+*   2 = final constraining by removing unimportant data as 
+*       defined by the Information Density Matrix (see GMI 
+*       theory)
+*   3 = case 1 & 2
+*   4 = case 1 with fixed max residuum (default 30 s)
+*   5 = case 4 & 2
+*
+CONSTRAIN SOLUTION (0/1/2/3/4/5)   : 4
+
+*
+* Additional parameter needed for the cases 2, 3, 5 of
+* CONSTRAIN SOLUTION:
+*
+* All data with Information Density matrix diagonal-element 
+* entries smaller than this threshold are not used. The 
+* threshold is calculated as ratio between actual Information 
+* Density Matrix entry and the entry with the maximum value.
+* The default is 0.005 = 0.5 % of the most important datum.
+*
+INF. DENSITY MATRIX THRESHOLD      : 0.005
+
+*
+* Additional parameters needed for the cases 4 and 5 of
+* CONSTRAIN SOLUTION:
+*
+MAXIMUM ALLOWED P RESIDUUM (DEF 30): 30.
+
+MAXIMUM ALLOWED S RESIDUUM (DEF 30): 30.
+*
+* The MAXIMUM AZIMUTH ERROR allowed value: 90. deg
+MAXIMUM AZIMUTH ERROR     (DEF 45) : 45.
+
+* The MAXIMUM SLOWNESS ERROR in [s/deg!] allowed value: 
+* 15. s/deg.
+MAXIMUM SLOWNESS ERROR    (DEF  5) : 5.
+
+*
+* The reading uncertainty of a seismic onset follows not a
+* Gaussian distribution. HYPOSAT can use two different 
+* standard deviations (STD) for the onset time to weight 
+* travel-time data residuals, depending on the sign of the 
+* residuum (always observation - calculation). The first STD 
+* will then be used for positive and the second STD for 
+* negative residuals. For more details see Schweitzer (2006).
+*
+*      0 = default, no 2nd STD
+*      1 = reading of 2nd STD from input file (see the 
+*          hyposat-in description)
+*      2 = 2nd STD is STD * DBLE SID. ERROR FACTOR
+*
+DOUBLE SIDED TIME ERROR (0/1/2)    : 2
+DBLE SID. ERROR FACTOR             : 0.5
+
+
+**** STEERING THE USAGE OF OBSERVATIONS
+
+* Onset time observations and phase names:
+
+*
+* If an event location should be only based on P-type onsets 
+* one sets this here.
+*
+* By default, this is switched off '0'
+*
+P-TYPE ONSETS ONLY           (0/1) : 0
+
+*
+* The usage of phase names SG and LG is not always consistent.
+* Following the IASPEI recommendations for seismic phase 
+* names, HYPOSAT assumes LG to be a surface wave with a given 
+* group velocity (see LG GROUP-VELOCITY).
+*
+* The following parameter settings can be used to homogenize 
+* the input by automatically changing the phase names for all 
+* SG or LG observations.
+*
+* By default, both options are switched off '0'.
+* If both flags are set to '1', they will be both ignored.
+*
+LG-PHASE TO SG               (0/1) : 0
+SG-PHASE TO LG               (0/1) : 0
+
+*
+* If one wants to use both the travel times of SG-type onsets 
+* as body-waves and LG onsets as surface waves, it can make 
+* sense to separate these two phases by the epicentral 
+* distance.
+*
+* If the following distance in [km] has a value above zero, 
+* this epicentral distance is used as separation between SG 
+* and LG.
+*
+* Then, all LG are renamed to SG if the epicentral distance is
+* shorter and all SG are renamed to LG if the epicentral 
+* distance is equal or larger than this distance.
+*
+SG--LG DISTANCE     (DEF -999. km) : -999.
+
+*
+* By default, HYPOSAT uses travel-time differences between 
+* different onsets at the same station as additional 
+* constraint. This can be switched off '0'
+*
+FLAG USING TRAVEL-TIME DIFFERENCES : 1
+
+* (Back)azimuth (BAZ) observations:
+
+*
+* The backazimuth (BAZ; azimuth from station to epicenter)
+* information is by default used as defining observation. This 
+* can be switched off by '0'.
+*
+AZIMUTH AS DEFINING          (0/1) : 1
+
+*
+* This switch must be set if one wants to use the BAZ 
+* observations only for the estimation of an initial solution 
+* (from crossing BAZ observations) and not for the further 
+* inversions.
+*
+AZIMUTH ONLY INIT SOL  (DEF 0) 0/1 : 0
+
+*
+* If one has many BAZ observations and wants to get a location 
+* based only on these observations (e.g., several infrasound 
+* array observations).
+*
+AZIMUTH ONLY           (DEF 0) 0/1 : 0
+
+*
+* Defines the maximum allowed travel-time residual for which 
+* the BAZ is used as defining observation for body waves and 
+* short-period, regional surface waves.
+*
+* The default value is 30 s.
+*
+MAX T RES FOR AZI OF B USE     [s] : 30.
+
+*
+* Defines the maximum allowed travel-time residual for which 
+* the BAZ is used as defining observation for long-period 
+* surface waves.
+*
+* The default value is 180 s.
+*
+MAX T RES FOR AZI OF L USE     [s] : 180.
+
+* Slowness observations:
+
+*
+* The slowness (ray parameter) of an observed onset is either
+* defined by its inverse, the apparent velocity in [km/s] or 
+* as spherical ray parameter in [s/deg]. The program handles 
+* both, but in one input file (see hyposat-in), only one type 
+* of units can be used.
+*
+* By default, and if the input file is in ISF format, the unit 
+* is set to [s/deg].
+*
+SLOWNESS [S/DEG] (0 = APP. VEL)    : 1
+
+*
+* If the slowness observations should not be used as defining, 
+* one must set this switch to '0'.
+*
+SLOWNESS AS DEFINING (DEF 1) 0/1   : 1
+
+*
+* Defines the maximum allowed travel-time residual for which 
+* the slowness is used as defining observation for body waves. 
+* The default value is set to 15 s.
+*
+MAX T RES FOR SLOWNESS USE         : 15.
+
+*
+* If the onset times of surface waves should be used as i
+* defining observations, one must set this switch to '1'.
+*
+LP SURFACE WAVES (LQ/LR)  (DEF 0)  : 0
+
+*
+* When using ISF-formatted files as data input, no 
+* uncertainties (standard deviations) of the observations are 
+* given. These values must be set. 
+*
+* To define standard deviations of the observed parameters 
+* based on the reported quality of the onset readings, see 
+* the ISF/IMS documentation.
+*
+* For higher precision readings (input in milliseconds), the 
+* values set here are reduced by 20%.
+*
+* For non-P-type onsets, the values given here are doubled.
+*
+* ISF_i and ISF_e are also used to define the quality of an 
+* onset
+* based on the applied uncertainty of the reading during the
+* inversion process.
+*
+
+* Standard deviation for impulsive onset readings:
+ISF_i                    (DEF .1 s) : 0.1
+
+* Standard deviation for emergent onset readings:
+ISF_e                    (DEF .5 s) : 0.5
+
+* Standard deviation for other, non-defined onset readings:
+ISF_o                    (DEF 1. s) : 1.
+
+* Standard deviation for BAZ observations
+ISF_az                (DEF 20. deg) : 20.
+
+* Standard deviation for ray parameter observations
+ISF_slo              (DEF 1. s/deg) : 1.
+
+
+* Other input data:
+
+*
+* If infrasound observations (IS) shall be used as defining 
+* this switch must be set to '1'.
+*
+IS-PHASE USAGE         (DEF 0) 0/1 : 0
+
+*
+* If the T-phase observations shall be used as defining 
+* this switch must be set to '1'.
+*
+T-PHASE USAGE          (DEF 0) 0/1 : 0
+
+* General input settings:
+
+*
+* If the following flag is set, all observations are used 
+* during inversion according to the setting of TASDR (see 
+* detailed description in hyposat-in), independently of the 
+* size of the residual(s).
+* By default, this option is switched off '0'.
+* 
+FLAG USING INPUT FIXED       (0/1) : 0
+
+*
+* The program can check the input for more than one onset of 
+* the same phase at one station and reduce these onsets to one 
+* entry. This option is of particular interest whenever onset 
+* readings from several sources are merged together to one 
+* single input file. The reduction (after removing double 
+* entries) is done by calculating mean onset parameters and 
+* adding the spread of the different onset parameters (time, 
+* BAZ and slowness) to the reading uncertainty of this 
+* observation.
+*
+* Amplitude/period readings will not be changed.
+*
+* By default, this option is switched off '0'.
+*
+FLAG CHECKING MULTIPLE ONSETS (0/1): 0
+
+*
+* The maximum time difference between two observations to be 
+* merged into one new observation in [s].
+*
+MAX DT FOR MULTIPLE ONSETS (DEF 5.): 5.
+
+
+**** MAGNITUDE CALCULATION PARAMETERS
+
+*
+* If the input file hyposat-in contains amplitude/period 
+* readings, station and network magnitudes can be estimated.
+*
+* By default, this option is switched off.
+*
+MAGNITUDE CALCULATION (DEF 0) (0/1): 0
+
+*
+* For all magnitude calculations corresponding attenuation 
+* relations must be provided.
+*
+* Body wave magnitude mb from first P-type onsets:
+*      G-R  = Gutenberg-Richter 
+*      V-C  = Veith-Clawson
+*      M-R  = Rezapour
+*
+P-ATTENUATION MODEL (G-R/V-C/M-R)  : G-R
+
+*
+* Surface wave magnitude MS from LR observations:
+*      IASPEI = Prague Formula from 1966
+*      R-P    = Rezapour-Pearce formula
+*
+MS-ATTENUATION MODEL (IASPEI / R-P): R-P
+
+*
+* Local /regional magnitude ml from S and Lg onsets:
+*
+*              Model        file name
+*             -------------------------
+*              Bath      - MLCORR.TABLE
+*                          This period depending attenuation
+*                          relation (B†th et al., 1976) is in 
+*                          original only defined for periods 
+*                          between 0.3 and 1.4 s. The program 
+*                          accepts period measurements values 
+*                          between 0.24 s (= 4.16 Hz) and 
+*                          1.68 s (= 0.595 Hz).
+*
+*             Richter    - MLCORR.TABLE.wa 
+*                          The original Wood-Anderson 
+*                          attenuation curcve for California
+*                          (Richter, 1935).
+*
+*             Richter    - MLCORR.TABLE.wa.nicolas
+*                          A Wood-Anderson type curve for 
+*                          Europe modified from Nicolas et
+*                          al., (1982)
+*
+* Note: 'Richter' ml assumes Wood-Anderson instrument
+* simulated amplitude measurements in [mm] and the period 
+* information is not used.
+*
+ML-ATTENUATION MODEL               : Bath
+
+*
+* Setting the file name (see above), which contains the 
+* attenuation corrections for the chosen ML-ATTENUATION MODEL. 
+* The file must be either located in the run-directory, or the 
+* directory defined by HYPOSAT_DATA, or one has to give the 
+* full file name including the path information.
+*
+ML-CORRECTION FILE                 : MLCORR.TABLE
+
+*
+**** I/O RELATED PARAMETERS
+*
+
+*
+* Input:
+*
+
+* The default data-input file name is hyposat-in.
+* Here another file name for the data-input file can be given.
+* The default is also used when set to '_' or ' '.
+*
+INPUT FILE NAME                    : hyposat-in
+
+*
+* The hyposat-in format has slightly changed with the new 
+* HYPOSAT 6. If the input file still follows the old syntax, 
+* one has to set this flag. The default is '0' for using the 
+* new syntax.
+*
+HYPOSAT-IN OLD SYNTAX  (DEF 0) 0/1 : 0
+
+*
+* Besides data input in HYPOSAT format, HYPOSAT can also read 
+* ISF (IMS) Bulletin formatted files as data input. The 
+* input-file name can be either hyposat-in or any other name 
+* as set with INPUT FILE NAME.
+*
+* By default, the input is in HYPOSAT format.
+*
+INPUT FORMAT ISF       (DEF 0) 0/1 : 0
+
+*
+* Output:
+*
+
+*
+* Program output is written by default in the file 
+* hyposat-out, which is also used when input is '_' or ' '. 
+* This name can be changed. 
+*
+OUTPUT FILE NAME                   : hyposat-out
+
+*
+* With this flag any output to a file can be switched off. By
+* default set to '1' and the output is written in the file 
+* defined by OUTPUT FILE NAME.
+*
+OUTPUT SWITCH          (DEF 1) 0/1 : 1
+
+*
+* The epicentral distance of the observations can be 
+* calculated in [km] or [degree].
+* See also MAX EPI DIST OF STAT and MIN EPI DIST OF STAT.
+*
+* If setting the flag OUTPUT IN KM, no ISF-formatted file can 
+* be written (OUTPUT FORMAT ISF is then automatically set to 
+* '0').
+*
+* The default output is epicentral distances in degrees '0'.
+*
+OUTPUT IN KM                 (0/1) : 0
+
+*
+* The program can calculate theoretical BAZ and slowness 
+* values for all observations and write these values in the 
+* hyposat-out file. 
+*
+* If theoretical values are added to the output file, no 
+* residuals are calculated and these fields stay empty.
+*
+* These values are ignored in ISF formatted output.
+*
+*       0 = default, no output of theoretical values
+*       1 = theoretical BAZ are given in output
+*       2 = theoretical slowness values are given in output
+*       3 = both (BAZ & slowness values) are given in output
+*
+OUTPUT OF THEO. BAZ+P    (0/1/2/3) : 0
+
+*
+* The program can calculate an epicentral error ellipse based 
+* on the chosen CONFIDENCE LEVEL and the estimated hypocenter 
+* or epicenter uncertainties.
+*
+* By default, this option is switched on '1'.
+*
+EPICENTER ERROR ELLIPSE      (0/1) : 1
+
+*
+* The primary and secondary azimuthal gaps can be calculated 
+* for
+*           = 0 all defining observations (default)
+*           = 1 all observing stations
+*
+* In any case, observations are considered only from stations 
+* in the allowed distance range (see MAX EPI DIST OF STAT and
+* MIN EPI DIST OF STAT)
+*
+AZIMUTHAL GAP FOR OBSERVATIONS     : 0
+
+*
+* HYPOSAT can also calculate for all identified body-wave 
+* onsets the corresponding emergence angles at the seismic 
+* source.
+* This flag is by default switched off.
+*
+FLAG EMERGENCE ANGLE OUTPUT (DEF 0): 0
+
+*
+* HYPOSAT calculates two types of RMS values: one is the 
+* traditional RMS of all residuals from defining travel-time 
+* observations and the other is the RMS calculated from the 
+* weighted residuals as done at the ISC. Both values are 
+* listed in the hyposat-out file.
+*
+* In the case of an additional ISF-formatted output file (see
+* OUTPUT FORMAT ISF), the origin line contains only one place 
+* to write an RMS value. 
+* By default, the traditional RMS value is used. If the 
+* following switch is set, the ISC-type RMS value is written.
+* 
+ISC-TYPE ISF RMS             (0/1) : 0
+
+*
+* The final HYPOSAT solution can be compared with a reference
+* location, which can be set with the following parameters
+* 
+* The default is that no reference location is used '0'.
+*
+REFERENCE EVENT              (0/1) : 0
+REFERENCE SOURCE LONGITUDE   [deg] : -999.
+REFERENCE SOURCE LATITUDE    [deg] : -999.
+REFERENCE SOURCE DEPTH        [km] : -999.
+
+*
+* In ISF-formatted files, the listed origins are identified 
+* with an author (source). Different authors are allowed but 
+* usually one location is identified as primary location.
+*
+* Here the author of the preferred reference location can be 
+* set. This location will then be used as reference location 
+* and as starting solution for the inversion process.
+*
+* If one wants to use the primary location, independently from 
+* the author, one has to give 'PRIME'.
+*
+* If the parameter is set to '_', just the first origin in the 
+* input file is used.
+*
+* e.g.:
+*ISF REFERENCE LOCATION             : NOA
+*ISF REFERENCE LOCATION             : PRIME
+*ISF REFERENCE LOCATION             : ISC
+*
+ISF REFERENCE LOCATION             : _
+
+*
+* HYPOSAT can additionally write the location results in an
+* ISF-formatted file. The file name is either hyposat-isf or 
+* any other name defined by OUTPUT FILE NAME with the 
+* additional extension _isf.
+*
+* By default ('0'), no ISF-formatted output is written.
+*
+OUTPUT FORMAT ISF      (DEF 0) 0/1 : 0
+
+*
+* In ISF-formatted files, Event and Origin Identifications 
+* (Ids) can be defined.
+*
+* Event Id:
+* Any integer is allowed between 0 and 999999999. By default, 
+* it will be set to 0 (but then the number from an eventually 
+* used ISF-formatted input file is used).
+*
+ISF EVENT ID                       : 0
+
+*
+* An ISF-formatted file can contain several event locations
+* for the same event. The different locations can be 
+* separated by Origin Ids. The Origin Id can be any 8-
+* character long string. 
+* By default ('_') HYPOSAT uses, if it exists, the Id from the
+* ISF-formated input file.
+*
+ISF ORIGIN ID                      : _
+
+*
+* Based on the location results and after eventually renaming 
+* and/or merging onsets, the program can write a new file in 
+* input format. The file name will be hyposat-in.rev or the 
+* file name defined by OUTPUT FILE NAME with the extension 
+* _rev
+*
+* By default, this option is switched off.
+*
+FLAG NEW INPUT FILE          (0/1) : 0
+
+*
+* HYPOSAT has different verbosity levels for output on the 
+* screen during program execution. This level can be defined 
+* here.
+*
+* If OUTPUT LEVEL > 10, the output level for the screen is 
+* internally calculated and an extra output file 
+* hyposat_gmi.out is written with additional information about 
+* the Generalized Matrix Inversion (GMI) results. Then, the 
+* resolution, covariance, correlation, and the information-
+* density matrix will be written out. A definition of the 
+* matrices can be found e.g., in the text books of 
+* Menke (1989) or Aki & Richards (1980). The file
+* hyposat_gmi.out always contains the named matrices for the 
+* last inversion. OUTPUT LEVEL can be set to the following 
+* values:
+* 
+* OUTPUT LEVEL  Matrix Output           Output Level on Screen
+* 0 - 10        None                               0 - 10
+* 11            Resolution Matrix                    4
+* 12            Covariance Matrix                    4
+* 13            Correlation Matrix                   4
+* 14            All Three Matrices                   4
+* 15                   "                             5
+* 16                   "                             6
+* 17                   "                             7
+* 18                   "                             8
+* 19                   "                             9
+* 20            ", plus diagonal elements
+*               of the Information-Density
+*               Matrix                               4
+* 21 - 29       "                        as for levels 11 - 19
+* 30            ", plus whole Information-
+*               Density Matrix                       4
+* 31 - 39       "                        as for levels 11 - 19
+*
+* As default value, the output (verbosity) level '4' is used.
+*
+OUTPUT LEVEL                       : 4

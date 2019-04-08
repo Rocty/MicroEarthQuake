@@ -1,0 +1,144 @@
+
+Contents and description of the tar-file hyposat.6_0d.tar
+
+hyposat_6.0d/.                              |   HYPOSAT main directory with following contents
+
+
+./bin/
+	hyposat                             |   hyposat-executable for Linux & Centos 6
+
+	hypomod                             |   hypomod-executable for Linux & Centos 6
+
+
+./data/                                     
+                                            |   data files used by hyposat
+
+	ak135_A.hed                         |   Model AK135 file
+	ak135_A.tbl                         |   Model AK135 file
+	iasp91_A.hed                        |   Model IASP91 file
+	iasp91_A.tbl                        |   Model IASP91 file
+	iasp91a_A.hed                       |   Model IASP91a file, as IASP91 but different inner core
+	iasp91a_A.tbl                       |   Model IASP91a file, as IASP91 but different inner core
+	jb_A.hed                            |   Model Jeffreys-Bullen file
+	jb_A.tbl                            |   Model Jeffreys-Bullen file
+	prem_A.hed                          |   Model PREM file
+	prem_A.tbl                          |   Model PREM file
+	sp6_A.hed                           |   Model SP6 file
+	sp6_A.tbl                           |   Model SP6 file
+
+	plus several regional models in tau-spline file format (*_A.hed & *_A.tbl files).
+
+	elcordir.tbl                        |   data file to calculate ellipticity corrections
+
+	stations.dat                        |   NEIC station coordinates 
+
+	MB_G-R.DAT                          |   Gutenberg-Richter attenuation model for mb
+	MB_V-C.DAT                          |   Veith-Clawson attenuation model for mb
+        MB_M-R.DAT                          |   M. Rezapour's attenuation model for mb
+
+        MLCORR.TABLE                        |   Markus Baath's attenuation model for Ml 
+        MLCORR.TABLE.wa                     |   Charles Richter's Wood-Anderson attenuation model for Ml
+        MLCORR.TABLE.wa.nicolas             |   Wood-Anderson attenuation model for Ml in Europe  from 
+                                            |   Nicolas et al.
+
+	REG_L3.DAT                          |   Seismo-Tectonic Units, Level 3 (only parts of Europe)
+
+	crust1.bnds                         |   data file for model CRUST 1.0
+	crust1.vp                           |   data file for model CRUST 1.0
+	crust1.vs                           |   data file for model CRUST 1.0
+
+	std_crusts.dat                      |   crustal models of different spherically symetric Earth models
+
+
+./examples:
+
+	README                              |   some explainations
+
+	hyposat-in.net                      |   examples for hyposat-in files
+	hyposat-in.regional                 |
+	hyposat-in.single_array             |
+	hyposat-in.tele                     |
+
+	hyposat-out.net                     |   examples for the corresponding hyposat-out files
+	hyposat-out.regional                |
+	hyposat-out.single_array            |
+	hyposat-out.tele                    |
+
+        hyposat-isf.net                     |   example for an ISF formatted output file
+
+	hyposat-parameter.net               |   examples for the corresponding hyposat-parameter files
+	hyposat-parameter.regional          |
+	hyposat-parameter.single_array      |
+	hyposat-parameter.tele              |
+
+	hypomod-in.tele                     |   input file for HYPOMOD
+        hyposat-parameter.tele.mod          |   corresponding parameter input file
+        hypomod-out.tele                    |   output for the HYPOMOD example
+
+	loc.dat                             |   example file for a local/regional velocity model
+	stations.cor                        |   example file for station corrections
+
+	run                                 |   script to run one of the HYPOSAT example
+
+	run_hypomod_example                 |   script to run the HYPOMOD example
+
+        run0                                |   script to run all examples
+
+
+./man:
+
+	schweitzer_1997.pdf                 |   PDF file containing "Schweitzer, J. (1997). Hyposat - A new routine to
+                                            |   locate seismic events. In: NORSAR Sci. Rep. 1-97/98, Kjeller, Norway."
+
+        HYPOSAT_Manual.pdf                  |   PDF file containing a detiled manual how to run HYPOSAT 6.0 and 
+                                            |   HYPOMOD 2.0 of May 2018
+
+        hyposat_history                     |   History of main changes in the software package from version to version
+
+	hyposat-parameter                   |   hyposat-parameter file with detailed explanations for all parameter 
+                                            |   settings
+
+        hyposat-out.pdf                     |   ./examaples/hyposat-out.tele with explanations
+
+        NMSOP-3_PD_11.1_june_2018.pdf       |   Program Manual as published in the 3rd edition of the 
+                                            |   "New Manual of Observatory Practice"
+
+./src:                                      
+                                            |   all source codes to produce your own version of HYPOSAT.
+					    |   make_hyposat 
+
+	hyposat.f                           |   source  & object codes for HYPOSAT tested on LINUX with gfortran
+        hyposat_clib.c                      |   and on Windows10 with IFORT
+        hyposat_cross.f
+        hyposat_crust.f
+        hyposat_crust_mod.f
+        hyposat_file.f
+        hyposat_geo.f
+        hyposat_geotab.f
+        hyposat_inv.f
+        hyposat_lib.f
+        hyposat_loc.f
+        hyposat_mag.f
+        hyposat_numr.f
+        hyposat_phase.f
+        hyposat_time.f
+        isf_i_o.f
+        libtau_h.f
+
+	hypomod.f                           |   source & object code for HYPOMOD
+
+        gm2.h                               |   include files used in different parts of the source code
+        gmi.h
+        isf_head.h
+        lsq.h
+        magpar.h
+        modelc.h
+        modelg.h
+        model.h
+        phlist.h
+        ref.h
+        ttimes.h
+        ttlim.h 
+
+	make_hyposat                        |   script to run the Makefile
+	Makefile                            |   Makefile for HYPOSAT and HYPOMOD on LINUX

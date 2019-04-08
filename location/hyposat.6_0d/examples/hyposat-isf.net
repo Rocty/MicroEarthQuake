@@ -1,0 +1,19 @@
+DATA_TYPE BULLETIN
+Event 999999999 SWEDISH-FINISH BORDER ZONE
+   Date       Time        Err   RMS Latitude Longitude  Smaj  Smin  Az Depth   Err Ndef Nsta Gap  mdist  Mdist Qual   Author      OrigID
+1994/04/17 12:00:12.90   2.72  3.08  67.2398   22.2172  20.0  16.4  82   0.0f        24    4 166   2.61   8.03        HYPOSAT   99999999
+ (Confidence level of given uncertainties:  95.00 %)
+ (6 Travel-time differences used as defining)
+ (Reference models  : CRUST 1.0 and iasp91_A)
+
+Sta     Dist  EvAz Phase        Time      TRes  Azim AzRes   Slow   SRes Def   SNR       Amp   Per Qual Magnitude    ArrID
+ARCES   2.61  26.3 Pn       12:00:55.800  -0.5 212.4   3.0  14.30    0.6 TAS  97.8       4.5  0.30 __e            abcdef01
+ARCES   2.61  26.3 Sn       12:01:27.900  -1.8 211.8   2.4  19.50   -5.2 TA_                       __e                   _
+ARCES   2.61  26.3 Sg       12:01:39.500   0.5 207.1  -2.3  28.50   -4.6 TA_                       __e                   _
+APA0    4.17  80.0 Pn       12:01:21.100   3.4 276.1   6.2  12.80   -0.9 TAS                       __e                   _
+APA0    4.17  80.0 Sn       12:02:13.400   5.2 264.9  -5.0  20.60   -4.1 TA_                       __e                   _
+APA0    4.17  80.0 Lg       12:02:20.100  -2.3 249.4 -20.5  27.10   -4.0 T__                       __e                   _
+FINES   6.05 162.1 Pn       12:01:39.200  -4.4 344.6  -1.0  15.00    1.3 TAS                       __e                   _
+NORES   8.03 220.7 Pn       12:01:57.800 -12.8  28.6  -2.5  13.40   -0.3 _AS                       __e                   _
+
+STOP

@@ -1,0 +1,155 @@
+#!/bin/csh -f
+
+##############################################################
+#                                                            #
+# Driver for Makefile for the program hyposat                #
+#                                                            #
+# July 2013, Johannes Schweitzer, NORSAR                     #
+#                                                            #
+#  johannes@norsar.no                                        #
+#                                                            #
+#  tested for SunOS f77      compiler                        #
+#  tested for Linux g77      compiler                        #
+#  tested for Linux gfortran compiler                        #
+#                                                            #
+#  latest changes October 2017                               #
+#                                                            #  
+##############################################################
+#
+
+echo
+
+setenv UNIXVERS `uname -s`
+setenv HOSTNAME `hostname`
+
+echo make_hyposat $1 for $HOSTNAME running $UNIXVERS
+
+
+if ( $UNIXVERS == 'SunOS' ) then
+
+#
+
+        setenv OPTD "/common/opt/WS6/"
+
+	set path = ( $OPTD/SUNWspro/bin /usr/ucb $path)
+#
+	setenv LD_LIBRARY_PATH /usr/dt/lib:/usr/local/lib:/usr/openwin/lib:$OPTD/SUNWmotif.24/lib
+	setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:$OPTD/SUNWspro/lib
+#
+	setenv STDLIBS "-Bstatic -lM77 -lF77 -lV77"
+	setenv STDLIBS "$STDLIBS -Bdynamic -lXm -lXt -lXext -lX11"
+	setenv STDLIBS "$STDLIBS -lsocket -lnsl -lgen -ldl -lm -lintl"
+	setenv STDLIBS "$STDLIBS -lw -lc -Bstatic -lF77"
+#
+	setenv F77 "$OPTD/SUNWspro/bin/f77 "
+
+	setenv CC "$OPTD/SUNWspro/bin/cc -DSUN -DSYSV"
+	setenv LD "$OPTD/SUNWspro/bin/f77"
+
+	setenv FFLAG "-c -xtarget=generic"
+
+	setenv CFLAG "-c"
+
+	setenv LFLAG "$STDLIBS -s"
+
+	setenv M "s"
+
+	setenv OPT "-O"
+
+##	setenv DEBUG "-g -C"
+	setenv DEBUG ""
+
+#
+##      use old FORTRAN syntax to get an environment variable
+#      
+        \cp -p hyposat_file.f_old hyposat_file.f
+
+else
+
+	if ( $UNIXVERS != 'Linux' ) then
+		echo "Unknow operation system"
+		exit
+	endif
+
+	setenv M "l"
+
+#
+#  start of FORTRAN compiler specific lines
+#
+
+#
+# to be used with g77 compiler
+#
+##	setenv F77 "g77"
+##
+##	setenv FFLAG "-c -malign-double -fno-automatic -fno-backslash "
+##
+##	setenv LFLAG "-s"
+##
+##	setenv DEBUG "-g3 -Wall -fbounds-check"
+##	setenv DEBUG ""
+
+##
+##      use old FORTRAN syntax to get an environment variable
+##      and function TRIMLE
+##      
+##      \cp -p hyposat_file.f_old hyposat_file.f
+##
+
+
+#
+# to be used with gfortran compiler
+#
+        setenv F77 "/usr/bin/gfortran"
+
+	setenv FFLAG "-c -fno-automatic -fno-backslash -frange-check"
+
+#
+## for debugging
+
+##  	setenv DEBUG "-g3 -Wall -fbounds-check"
+    	setenv DEBUG " "
+
+## 	setenv LFLAG "-lgfortran -lm "
+   	setenv LFLAG "-lgfortran -lm -s"
+
+##
+        setenv LD "/usr/bin/gfortran"
+
+##	setenv OPT "-O3"
+	setenv OPT "-O3 -ftree-loop-distribution -floop-block -floop-strip-mine -floop-interchange"
+
+#
+#     use new FORTRAN syntax to get an environment variable
+#      
+#
+#        set dif = `diff hyposat_file.f_new hyposat_file.f | wc -l | awk '{print $1}' `
+#        if ( $dif != 0 ) then
+#	   \cp -p hyposat_file.f_new hyposat_file.f
+#        endif
+
+#
+#  end of FORTRAN compiler specific lines
+#
+
+	setenv CC "/usr/bin/gcc"
+	setenv CFLAG "-c"
+
+endif
+#
+#
+echo
+echo "make install with :"
+echo "C-compiler       CC $CC"
+echo "Fortran-compiler F77 $F77"
+echo
+
+if ( $1 == 'clean' ) then
+     make clean
+     exit
+endif
+
+make hyposat
+make hypomod
+
+#

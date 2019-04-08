@@ -1,0 +1,630 @@
+c
+c
+c     program HYPOSAT
+c
+c     Program developement and history
+c
+c     last update: October 2018
+c
+c----------------------------------------------------------------------
+c
+c     Short desciption - for more details see HYPOSAT-Manual and
+c     HYPOSAT papers in NORSAR Sci. Rep., PAGEOPH and PEPI. 
+c
+c
+c     This program locates seismic events by inverting 
+c     observed travel times, backazimuths, and slowness values.
+c
+c     Different phases observed at one station can be used to 
+c     calculate travel-time differences. These differences are 
+c     then used to invert for the hypocenter.
+c
+c     A preliminary epicenter will be defined with the backazimuth 
+c     observations, or with other available information.
+c
+c     If possible a source time will be estimated by a 
+c     Wadati-Approach from the S-P travel-time difference(s) assuming 
+c     a constant v(p)/v(s)=sqrt(3.) for each phase type separately.
+c
+c     The final location is done with a Single-Value-Decomposition
+c     algorithm, which results in a least squares fit for
+c     all four source parameters using travel-time models from
+c     tau-spline-type tables (i.e., IASP91, AK135, PREM, ...), 
+c     and / or a local/regional model of horizontal layers.
+c
+c     All travel times are corrected  for the ellipticity of the
+c     Earth.
+c
+c     All available information is used including standard 
+c     deviations for observed data and 'a priori' information
+c     for the model parameter.
+c
+c     All calculations are done for the Earth as a sphere and
+c     travel times are corrected  for the ellipticity of the
+c     Earth.
+c
+c--------------------------------------------------------------------
+c
+c                           Program History
+c
+c     First version progammed in summer 1996 by     
+c
+c                               Johannes Schweitzer 
+c                               Institute of Geophysics
+c                               Ruhr-University Bochum
+c                               D-44780 BOCHUM
+c                               Germany
+c
+c       major improvements, corrections or changes since 1997:
+c
+c                               12-15 February 1997
+c                               czo = b  means: starting with 'f' and 
+c                               ending with 'd'
+c                               Flow of calculations for oscillating 
+c                               solutions changed, especially for depth
+c                               determinations.
+c                               Correcting to-time for Wadati formula;
+c                               included some maximum values for to.
+c                               Handling of dtm changed.
+c                               P1 and S1 included as phase name for
+c                               (unknown) first P- and S-onsets. The
+c                               program choose the right name depending
+c                               on travel-time table and distance.
+c
+c                               13 March 1997
+c                               Usage of PKiKP instead of PKPdf 
+c                               whenever PKPdf does not exist (for 
+c                               observations around the triplication). 
+c                               Similar changes for P/Pdif and S/Sdif.
+c                               Startsolution always at the closest 
+c                               station, if no backazimuth information
+c                               is available.
+c
+c                               23 April 1997
+c                               some changes in hyposat_gmi to print 
+c                               out the resolution, covariance, 
+c                               correlation, and the information-density 
+c                               matrix.
+c
+c               Version 2.2     May 8, 1997
+c                               Station corrections included with file 
+c                               station.cor .
+c                               Small bug to calculate dpdh removed.
+c
+c               Version 3.0     June 2, 1997
+c                               Local velocity model included.
+c                               Checking if oscillating solution
+c                               is running over 4 solutions.
+c
+c
+c     all changes and extensions in the whole program package after 
+c     1. July 1997 from version 3.0b on:
+c
+c
+c                                 Johannes Schweitzer
+c                                 NORSAR
+c                                 P.O.Box 53
+c                                 N-2027 KJELLER
+c                                 Norway
+c
+c                         e-mail: johannes.schweitzer@norsar.no
+c
+c
+c                       3.0b    July 10, 1997 at NORSAR
+c                               Switch diffflag included. If set to 
+c                               .ne.0 , no travel-time differences will 
+c                               be used.
+c
+c                               July 14, 1997
+c                               Determined phase name only printed if 
+c                               different from input phase name.
+c
+c                               July 18-23, 1997
+c                               Handling of dtm changed again. Now 
+c                               variable rms of resiudals of former 
+c                               solution (only if last change is smaller 
+c                               than 10*setcheck).
+c                               Removing small bug in order of output 
+c                               listing. Smaller changes in output-file.
+c
+c                       3.0c    July 25-30, 1997
+c
+c                               Several mistyping removed. Phase-naming
+c                               changed and logical errors removed.
+c                               Smaller adjustments to relocate 
+c                               REB-events.
+c
+c                               ERROR due to -180 deg / +180 deg border
+c                               for calculating a mean starting solution 
+c                               removed!
+c
+c                               Iteration also stops if the last change
+c                               of hypocenter is smaller than 1/1000 of
+c                               distance to the nearest station (as long
+c                               as SETCHECK has the default value of 
+c                               1.).
+c                               All these ditances are measured in [km].
+c                               
+c               Version 3.1     August 2-8, 1997
+c                               SDLATG corrected for events on the 
+c                               souther hemisphere.
+c
+c                               Handling of multiple-core phases 
+c                               changed. Backazimuth handling of LR, LQ 
+c                               fixed.
+c
+c                               Calculating standard deviations fixed, 
+c                               if only two observations are available 
+c                               for Wadati-curve.
+c
+c                               Because no ellipticity corrections are 
+c                               available for events deeper than 700 km,
+c                               we accept a smal error for events 
+c                               between 700 km and 800 km.
+c
+c               Version 3.2     September, 21 - October, 16 1997
+c                               Plotting removed and the parameter file 
+c                               decoupled from data file. Possibility to
+c                               give a starting epicenter and its 
+c                               standard errors included.
+c                               Usage of travel-time differences 
+c                               changed.
+c                                
+c                       3.2a    October, 29 - November 28, 1997
+c                               Startsolution for station nets 
+c                               corrected. Cases with low information 
+c                               (number of data very small) changed.
+c
+c                               Elevation correction corrected for 
+c                               unknown phase-type. Inversion for 
+c                               underestimated events changed. Handling 
+c                               of unstable depth estimates changed. 
+c                               Reducing the output of 'bad'-solutions.
+c                               In parameter file HEIGHT changed to 
+c                               ELEVATION.
+c
+c                               Missing backazimuth values corrected for
+c                               LR phases in the REBs.
+c
+c                               Partial derivatives to define the source 
+c                               depth must be at least 0.00001 [s/km] or
+c                               0.00001 [(s/deg)/km].
+c
+c                               Comparing 'Wadati-source time' with 
+c                               'final-source time' to get a better 
+c                               depth in the case of a large mean travel-
+c                               time residual.
+c
+c                               December 16, - December 18, 1997
+c                               Calculating the partial derivatives for
+c                               'tau-spline'-models numerically!
+c
+c                               Changed to new 'Flinn-Engdahl' regions.
+c
+c                               January 15, 1998
+c                               DTKM adjusted for IASP91 crust.
+c              
+c                       3.2b    June 17-22, 1998
+c                               Smaller changes for one-phase 
+c                               observation at only one array (station).
+c
+c                       3.2c    September/October 1998
+c                               Changes for local models (model can be 
+c                               given with file name although no phases 
+c                               are wanted), removing of smaller bugs in 
+c                               calculating the starting source time.
+c
+c                       3.2d    December 1998
+c                               New parameters in 'hyposat-parameter'
+c                               and surface wave 'Rg' included using a 
+c                               constant group velocity.
+c                               CSS 3.0 .site file format included.
+c                               COMMON blocks for inversion calls 
+c                               included.
+c
+c               Version 4.0     March 1999
+c                               CRUST 5.1 after Mooney, Laske, and 
+c                               Masters (JGR, Jan. 1998) included.
+c                               input-parameter 'touse' included.
+c
+c                               May 1999
+c                               CSS 3.0 .site file format corrected.
+c                               Correction for different structures at
+c                               reflection points of the Earth's 
+c                               surface.
+c
+c               Version 4.1     September - January 2001
+c                               Group velocities for LQ, LR, and Lg 
+c                               included. Usage of (Lg-Pn) times for 
+c                               source time estimates included. 
+c
+c                               Epicenter error ellipse inluded. Start 
+c                               values for source time and its standard 
+c                               deviations included. Travel-time table 
+c                               for local models expanded (pS, sP, PmS, 
+c                               SmP,...).
+c
+c                               Whenever needed, we changed from the
+c                               standard Earth radius to the actual
+c                               Earth radius as calculated with the
+c                               standard ellipsoid parameter (see 
+c                               FUNCTION RADLOC).
+c
+c                               HYPOSAT_CROSS corrected: error bars and
+c                               non-crossing directions removed.
+c                               RMS calculation also for slowness and
+c                               backazimuth residuals.
+c
+c                               Calculation of magnitudes (Ms or mb)
+c                               Attenuation model Gutenberg-Richter or
+c                               Veith-Clawson for mb and for Ms the 
+c                               IASPEI 1967 formula .
+c
+c               Version 4.2     June 2001 (distributed)
+c
+c                               Possibility to use two different global 
+c                               models during one inversion usage 
+c                               included.
+c
+c                               Handling of oscillating solutions 
+c                               changed and stabilized.
+c
+c               Version 4.3     August/September 2001 (distributed)
+c
+c                               Calculation of weighted misfit for 
+c                               all data  and of the azimuthal gap of 
+c                               defining observations included.
+c
+c                               Ms calculation with Rezapour/Pearce
+c                               (BSSA 88, 43-61) formula added.
+c
+c                       4.3a    November 2001
+c
+c                               Calculation of azimuthal gap corrected,
+c                               exponential output for large error
+c                               ellipsis.
+c
+c                       4.3b    January - March 2002
+c
+c                               Plane wave fit included to get better
+c                               initial solutions in the case of a distant
+c                               event with respect to the network
+c                               aperture.
+c
+c                               New version of libtau software (PKPdif!)
+c                               included.
+c
+c                       4.3c    March 2002
+c               
+c                               Re-compile and re-check of code for
+c                               errors and inconsistencies.
+c
+c                       4.3d    July 2002
+c
+c                               New input format for starting source 
+c                               time. Usage of different global models
+c                               extended to four!
+c
+c               Version 4.4     October 2002 (distributed)
+c
+c                               Weighting of outlayers changed ( see
+c                               DATMAX0 variable).
+c                               Phase names changed as recommanded by
+c                               IASPEI working group on phase names in
+c                               location routine and libtau software,
+c                               including ellipticity corrections.
+c
+c                               Some other smaller changes and 'bugs' 
+c                               removed.
+c
+c                       4.4a    March - May 2003 (distributed)
+c                               
+c                               New parameter to use azimuth only for
+c                               the inital solution.
+c                               Single array, single phase solutions
+c                               improved and corrected.
+c                               Small error for usage of different 
+c                               models corrected.
+c
+c                       4.4b    July  2003 (distribution exchanged)
+c
+c                               Bug in negative station-elevation 
+c                               correction fixed.
+c
+c                       4.4c    September 2003
+c                       4.4d    November 2003
+c
+c                               New environment variable 'HYPO_PARA'
+c                               for non-standard hyposat-parameter files
+c                               included (see hyposat_file.f).
+c                               All common blocks moved in include files
+c                               for easier maintenace (i.e., changes in:
+c                               hyposat.f, hyposat_gmi, hyposat_crust,
+c                               hyposat_crust_mod.f, hyposat_lib.f,
+c                               hyposat_gmi.f, hyposat_time.f, and
+c                               hyposat_loc.f).
+c                               Check for coordinate changes at stations
+c                               by time (CSS 3.0 Format input only!). 
+c
+c                       4.4e    December 2003
+c                               Common block for LSQ corrected.
+c                               Waiting of mean onset-time-residuum
+c                               vs. t0 changed.
+c
+c                               January 2004
+c                               Mehdi Rezapour's mb distance/depth 
+c                               corrections added.
+c
+c                               March 2004
+c                               Mean BAZ calculation at one station for
+c                               single-array initial solution corrected.
+c
+c               Version 4.5     March-August 2004
+c
+c                               More robust azimuth & ray parameter input.
+c                               New option to list distance in [km].
+c                               Static travel-time corrections for P and S
+c                               included (see description for file 
+c                               station.cor).
+c
+c                               Option to get theoretical ray parameter 
+c                               and / or backazimuth in output listing.
+c
+c                               Option implemented to use double sided
+c                               uncertainties for travel-time observations.
+c                               Bugs in dirdel, hyposat_loc and 
+c                               hyposat_crust corrected.
+c
+c                               Function dpythag more systematically
+c                               included for numerical stability reasons.
+c
+c                               Ellipticity corrections for Pdif and Sdif
+c                               corrected (wrong since version 4.4).
+c
+c                               New option to constrain a solution by 
+c                               modifying the last iteration: only these
+c                               data are used which contribute at least
+c                               with a choosen factor (variable thrfixi)
+c                               of the most important datum (analysis of 
+c                               information-density matrix) to the 
+c                               solution.
+c
+c                        4.5a   February 2005
+c
+c                               Size of error ellipse changed to two
+c                               parameter of freedom statistics.
+c                               Parameter for minimum and maximum travel-
+c                               time difference for Wadati-diagram 
+c                               included.
+c                        
+c                        4.5b   March-April 2005
+c
+c                               Error in handling of information-density 
+c                               matrix (in particular for travel-time
+c                               difference observations) corrected.
+c                               Standard error for crossing BAZ 
+c                               observations set to a minimum of 5% of 
+c                               distance to closest station.
+c
+c                Version 4.6    May-July 2005
+c
+c                               ISF formatted input and output included.
+c
+c                        4.6a   October 2006
+c
+c                               ISF formatted input cleaned.
+c
+c                      4.6b-e   November 2006
+c
+c                               In case of local models: output of Vp in
+c                               source depth added.
+c
+c                               Fixed depth corrected for # of definings.
+c                               Longitude for initial solution in case 
+c                               of the middle of a network corrected.
+c
+c                        4.6f   December 2006
+c
+c                               Smaller bugs removed regarding ISF i/o.
+c
+c                        4.6g   Februry 2007
+c
+c                               ML calculations included
+c
+c                        4.6h   May 2007
+c
+c                               New switch LOCGEO included
+c
+c                        4.6i   June 2007
+c
+c                               Some bugs removed, found by 
+c                               Huang Wen Hui when moving HYPOSAT to 
+c                               MS Windows environment.
+c
+c                Version 5.0    Since September 2007 work on:
+c
+c                               General upgrade of the Manual and some 
+c                               code changes. 
+c
+c                               Seismic stations below surface for 
+c                               local models included (even deeper than 
+c                               source depth).
+c
+c                        5.02   February 2010
+c
+c                        5.04   November 2010 - 2011
+c
+c                Version 5.1    November 2011 - October 2012
+c
+c                               October 2012 ISF formatted I/O changed
+c
+c                Version 5.2    July 2013
+c
+c                        5.2a   September 2013
+c
+c                        5.2b   November 2014
+c
+c                               Reference event included
+c
+c                        5.2c   spring 2015
+c            
+c                               Easier input handling (more default)
+c                               ISF input changed
+c                               Phase naming in hyposat-parameter file 
+c                               extended
+c
+c                               Secondary azimuthal gap included
+c                               hyposat_name.f extended and changed 
+c                               to hyposat_phase.f
+c
+c                               Additional options included, smaller 
+c                               errors with initial source time 
+c                               handling removed.
+c
+c                        5.2d   August 2015
+c
+c                               Multiple onsets can be merged
+c
+c                        5.2e   September/October 2015
+c
+c                               P1 / S1 phase naming corrected
+c                               Remark:  T phases can only be used for 
+c                               BAZ observations
+c
+c                        5.2f   March/April 2016
+c                               Handling of multiple entries changed
+c                               Some code cleaning
+c                               New functions UPPCAS & LOWCAS
+c                               Azimuthal gap moved into a subroutine 
+c                               and new option added
+c                               Number of stations added to output file
+c                               ISF event ID changed to 9 digits
+c                               Some corectios in the case of oscillating
+c                               solutions
+c                               Some code cleaning
+c
+c                        5.2g   May 2016
+c
+c                               Phase names for traveltime differences 
+c                               corrected.
+c
+c                        5.2h   June/Spetember 2016
+c
+c                               Smaller adjustments for ISF i/o
+c
+c                               Crust 5.1 input corrected for thin uppermost
+c                               layer and topography 
+c
+c                               T phases as surface-wave type with constant 
+c                               group velocity added (no raytracing in the 
+c                               ocean layer)
+c
+c                        5.2i   October 2016 - March 2017
+c
+c                               Switch to select const. station corrections
+c
+c                               Corrections for multiple reading entries
+c
+c                               Distance conversion deg to km corrected 
+c                               for very short distances
+c
+c                               2ndary azimuthal gap corrected 
+c
+c                               max time residual inferrd as switch to use 
+c                               onset for p/baz/mag
+c
+c                        5.3    March - April 2017
+c
+c                               libtau-tables changed to ASCII format and
+c                               limits in ttlim.inc changed
+c
+c                               libtau cleaned from not needed subroutines
+c
+c                               TABs removed in all subroutines
+c
+c                               FUNCTIONS ONERAY and TAUGET_RAY changed into 
+c                               SUBROUTINES 
+c
+c                               Resorting of subroutines/functions in libraries
+c
+c                               Flag to calculate a location only based on 
+c                               BAZ observations
+c
+c                               Elevation correction added for ray parameter 
+c                               observations
+c
+c                        5.3a   May - July 2017
+c
+c                               Some changes in hyposat-paramter file handling
+c                               (correction of one logical error)
+c
+c                        5.4    August - September 2017
+c
+c                               DOUBLE PRECISION -> REAL*8
+c                               REAL             -> REAL*4
+c
+c                               hyposat_clib.c cleaned from old code
+c
+c
+c                        5.4a   October/November 2017
+c
+c                               i/o errors fixed in isf_i_o.f
+c
+c                               FESCAN / BAREY / BAREZ & BARENTS16 added as 
+c                               standard programs to MLM data base
+c                               local model usage instead of MLM for corrections...
+c
+c                               Infrasound onsets are alowed as surface wave 
+c                               onsets with a constant group velocity (no 
+c                               raytracing in the athmosphere)
+c
+c                               libtau package extended for double reflections
+c                               at the Earth's surface for direct body waves
+c                               (e.g., PnPnPn, P'P'P, SSS, S'S'S',...)
+c
+c                               Function TRIMLE exchanged against intrinsic 
+c                               functions LEN_TRIM and TRIM (FORTRAN90)
+c
+c                               Split of hyposat_geo in two files: hyposat_geo
+c                               and hyposat_geotab
+c
+c                        6.0    December 2017 - February  2018
+c
+c                               Review of hyposat-parameter file
+c
+c                               Consistency check between code and 
+c                               hyposat-parameter file
+c
+c                               Exchange of CRUST 5.1 with CRUST 1.0
+c
+c                               hyposat-in format slightly changed
+c                               (switch 'M' for magnitude usage added)
+c
+c                        6.0a   March 2018
+c                               New option added to calculate source emergence 
+c                               angles for all body wave phases.
+c
+c                        6.0b   New Manual!!!
+c                               Distributed ....
+c
+c                        6.0c   June 2018
+c                               some i/o related corrections
+c                               ARID added to hyposat-out & hypomod-out
+c                               Distributed ....
+c                               
+c                        6.0d   October 2018
+c                               P1 & S1 slightly changed
+c                               error in libtau_h corrected
+c                               Distributed ....
+c
+c--------------------------------------------------------------------
+c
+c                               Plan: to be distributed ....
+c
+c                               Plans, ideas:
+c                               How to handle events above 0 (radius = 6371) km?
+c                               automatic usage of local/regional model 
+c                               with changed radius?
+c
+c****6789012345678901234567890123456789012345678901234567890123456789012
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc

@@ -1,0 +1,223 @@
+HYPOSAT Version 6.0d
+
+Event solution by HYPOSAT
+
+NORTHERN MOLUCCA SEA, 1996 29 June, converted from pIDC's Reviewed Event Bulletin (REB)
+
+
+Parameters of initial solution (+/- 1 standard deviation):
+
+Mean epicenter calculated from  165 backazimuth observation pairs
+Mean epicenter lat:   29.475 +/-    42.008 [deg]
+Mean epicenter lon:  121.592 +/-     6.098 [deg]
+
+S-P Travel-time difference type 1 with   2 observation(s)
+   to=   836008582.7 +/-  11.6 [s] Vp/Vs= 1.76 +/- 0.04
+Mean source time:  836008582.700 +/-  11.636 [s]
+Mean       vp/vs:          1.758 +/-   0.035
+
+Iterations        :    9
+Number of defining:   40
+Reference model   : ak135_A             
+
+The new source parameters:
+
+Confidence level of given uncertainties:  68.27 %
+
+Source time  : 1996 06 29 00 36 42.466 +/-    0.090 [s]
+        or               836008602.466 +/-    0.090 [s]
+        or       1996-181:00.36.42.466 +/-    0.090 [s]
+
+
+Epicenter lat:                  1.3946 +/-   0.0172 [deg]
+Epicenter lon:                126.3036 +/-   0.0352 [deg]
+Source depth :                  0.00   [km] Fixed
+
+Epicenter error ellipse:
+Major half axis:     8.03 [km]  Minor half axis:     7.93 [km]
+Azimuth:      113.1  [deg] Area:         200.26 [km**2]
+
+Flinn-Engdahl Region ( 266 ): Northern Molucca Sea
+
+Magnitudes:  4.4 (mb, G-R)  3.6 (Ms, R-P)
+
+ Stat  Delta   Azi   Phase   [used]    Onset time    Res     Baz     Res   Rayp   Res  Used     SNR    Amplitude  Period   MAG    Q Em-Ang ARID
+
+WRA    22.623 160.01 P                00 41 44.700  -0.455 331.50   -7.20 11.10   0.48 T S      97.80         4.50  0.300 4.44 mb e  33.64 abcdef01
+WRA    22.623 160.01 S                00 45 48.700  -5.777 338.00   -0.70 17.00  -2.31  A        8.10         2.00  0.900         e  36.94 abcdef02
+QIS    25.412 149.84 P1      P        00 42 12.800   0.780                             T  D     35.50                             e  28.27 abcdef03
+QIS    25.412 149.84 PcP              00 45 44.800   0.186                             T  D                                       e   6.75 abcdef04
+ASAR   25.984 163.93 P                00 42 16.900  -0.312 346.30    3.87  7.10  -1.96 TA D     35.10         3.40  0.500 4.24 mb e  28.19 abcdef05
+ASAR   25.984 163.93 PcP              00 45 45.200  -0.693 345.10    2.67  2.30   0.00 TASD     11.50         2.20  0.500         e   6.88 abcdef06
+ASAR   25.984 163.93 S                00 46 45.300  -3.757 347.60    5.17 20.30   4.48           6.10         3.90  0.800         e  29.48 abcdef07
+WARB   27.419 179.34 P                00 42 31.200   1.106 339.40  -19.86  8.20  -0.78   SD      8.20         6.50  0.700 4.51 mb e  27.92 abcdef08
+WARB   27.419 179.34 PcP              00 45 49.400   0.218                             T  D                                       e   7.20 abcdef09
+MEEK   28.840 194.38 P                00 42 42.700  -0.102                             T         6.80                             e  27.63 abcdef10
+CMAR   31.748 304.00 P                00 43  9.000   0.387 109.70   -9.47  7.80  -1.00 T S       4.30         0.60  0.400 3.88 mb e  27.31 abcdef11
+CMAR   31.748 304.00 LR               00 57 48.700  26.327 110.00   -9.17 39.50   0.45                      188.80 19.360 3.88 MS _        abcdef12
+FORT   32.039 177.15 P                00 43 11.300   0.348                             T        10.80                             e  27.27 abcdef13
+WOOL   32.587 187.38 P                00 43 15.600  -0.198   7.90   -0.71  9.90   1.14 TA        8.80         4.10  0.600 4.54 mb e  27.20 abcdef14
+SHK    33.501   9.56 P                00 43 25.400   1.652                                                                        e  27.05 abcdef15
+KSAR   35.901   2.15 P                00 43 46.700   2.272 177.30   -5.40 10.10   1.53           7.20         1.70  0.700 4.00 mb e  26.57 abcdef18
+KSAR   35.901   2.15 LR               01 04 25.000 260.901 160.00  -22.70 46.00   6.96                       40.10 19.860 3.26 MS _        abcdef19
+STKA   36.128 157.63 P                00 43 46.800   0.310 323.20  -10.24  9.00   0.44 T SD      8.30         7.20  0.600 4.67 mb e  26.52 abcdef16
+STKA   36.128 157.63 PcP              00 46 12.000  -0.540                             T  D                                       e   8.93 abcdef17
+MJAR   36.668  16.15 P                00 43 51.900   0.817 357.10  156.90 18.80  10.27 T                      2.00  0.550 4.09 mb e  26.41 abcdef20
+PDY    59.037 351.99 P                00 46 47.000   2.950 111.20  -52.89  6.60  -0.34   S      23.80         4.30  0.450 4.78 mb e  21.22 abcdef21
+ZAL    62.473 333.78 P                00 47  9.000   1.431                                                                        e  20.42 abcdef22
+ABKT   72.027 309.49 P                00 48  9.500   0.825                             T                                          e  18.23 abcdef23
+NRI    72.531 346.75 x       P        00 48  8.700  -2.188 195.90   56.32  3.90  -2.06          11.20         3.00  0.750 4.50 mb e  18.11 abcdef24
+MAW    81.431 200.28 P                00 49  1.100   0.071                             T                                          e  16.05 abcdef25
+KVAR   84.428 313.85 P                00 49 17.200  -0.184                             T                                          e  15.33 abcdef26
+NPO    87.382  25.36 P                00 49 31.000  -0.384                             T                                          e  14.60 abcdef27
+ARCES  92.478 339.77 P                00 49 51.700  -3.474  94.50   15.10  4.10  -0.52   S      10.50         0.80  0.550 4.31 mb e  13.94 abcdef28
+SPITS  92.672 348.81 P                00 49 55.900  -0.038 116.60   46.41  3.50  -1.12 T        10.40         3.60  0.900 4.77 mb e  13.93 abcdef29
+FINES  93.674 331.72 P                00 50  0.000  -0.784 111.20   30.85  5.90   1.30 T         6.60         0.60  0.550 4.17 mb e  13.89 abcdef30
+HFS    99.871 332.03 P       Pdif     00 50 28.700  -0.209 311.30 -118.21  1.50  -2.95 T         3.70         1.10  0.750 4.58 mb e  13.41 abcdef31
+SCHQ  122.925   9.01 PKPdf            00 55 41.200   0.410                             T                                          e   5.74 abcdef33
+TXAR  123.344  53.16 PKPdf            00 55 42.700   0.209                             T                                          e   5.74 abcdef32
+DBIC  130.601 279.95 PKPdf            00 55 57.100   0.558                             T                                          e   5.68 abcdef34
+PLCA  137.969 160.79 PKPdf            00 56  9.100  -0.698 311.90  106.25  6.40   4.56 T         4.40         0.90  0.900         e   5.51 abcdef35
+LPAZ  159.475 136.94 PKPdf            00 56 44.700  -0.521                             T                                          e   3.44 abcdef36
+
+Defining travel-time differences:
+
+ Stat  Delta  Phases           Observed   Res
+
+QIS    25.412 PcP - P           212.000  -0.594
+ASAR   25.984 PcP - P           208.300  -0.381
+WARB   27.419 PcP - P           198.200  -0.888
+STKA   36.128 PcP - P           145.200  -0.850
+
+Number of usable stations:   28
+
+Maximum azimuthal gap of defining observations:  53.2 -> 136.9 [deg] =  83.8 [deg]
+
+Maximum secondary azimuthal gap of defining observations:  25.4 -> 136.9 [deg] = 111.6 [deg]
+
+Residuals of defining data          RMS    MEAN-ERROR      MEAN
+    25 onset times             :    0.476       0.410      0.000  [s]
+     4 backazimuth values      :    2.400       1.985      1.282  [deg]
+     7 ray parameters          :    0.586       0.507     -0.244  [s/deg]
+     4 travel-time differences :    0.709       0.678     -0.678  [s]
+
+Weighted RMS of onset times (ISC type):    0.476 [s]
+
+Weighted misfit of input data         L1      L2
+    33 onset times             :    2.817    4.081
+    20 backazimuth values      :    1.351    2.281
+    17 ray parameters          :    1.474    2.734
+     4 travel-time differences :    1.599    1.671
+    74 misfit over all         :    2.047    3.272
+
+T0                         LAT      LON       Z     VPVS   DLAT     DLON      DZ       DT0    DVPVS DEF    RMS
+1996-06-29 00 36 42.466    1.395  126.304    0.00   1.76   0.0172   0.0352  Fixed     0.090   0.04   40    0.476
+
+Iterations        :    4
+Number of defining:   48
+Reference model   : ak135_A             
+
+The new source parameters:
+
+Confidence level of given uncertainties:  68.27 %
+
+Source time  : 1996 06 29 00 36 49.515 +/-    0.493 [s]
+        or               836008609.515 +/-    0.493 [s]
+        or       1996-181:00.36.49.515 +/-    0.493 [s]
+
+
+Epicenter lat:                  1.3237 +/-   0.0146 [deg]
+Epicenter lon:                126.2874 +/-   0.0347 [deg]
+Source depth :                 47.16   +/-   4.37   [km]
+
+Source time corrected for mean travel-time residual (  -0.035)
+
+Source time  : 1996 06 29 00 36 49.480 +/-    0.493 [s]
+        or               836008609.480 +/-    0.493 [s]
+        or       1996-181:00.36.49.480 +/-    0.493 [s]
+
+
+Epicenter error ellipse:
+Major half axis:     5.17 [km]  Minor half axis:     3.10 [km]
+Azimuth:       71.5  [deg] Area:          50.34 [km**2]
+
+Flinn-Engdahl Region ( 266 ): Northern Molucca Sea
+
+Magnitudes:  4.4 (mb, G-R)  3.6 (Ms, R-P)
+
+ Stat  Delta   Azi   Phase   [used]    Onset time    Res     Baz     Res   Rayp   Res  Used     SNR    Amplitude  Period   MAG    Q Em-Ang ARID
+
+WRA    22.562 159.91 P                00 41 44.700  -1.177 331.50   -7.09 11.10   0.52   SD     97.80         4.50  0.300 4.36 mb e  50.23 abcdef01
+WRA    22.562 159.91 S                00 45 48.700  -1.901 338.00   -0.59 17.00   0.65 TASD      8.10         2.00  0.900         e  41.40 abcdef02
+QIS    25.359 149.74 P1      P        00 42 12.800   0.379                             T  D     35.50                             e  41.16 abcdef03
+QIS    25.359 149.74 PcP              00 45 44.800   0.506                             T  D                                       e   9.38 abcdef04
+ASAR   25.921 163.86 P                00 42 16.900  -0.613 346.30    3.95  7.10  -1.95 TA D     35.10         3.40  0.500 4.19 mb e  41.02 abcdef05
+ASAR   25.921 163.86 PcP              00 45 45.200  -0.350 345.10    2.75  2.30   0.00 TASD     11.50         2.20  0.500         e   9.56 abcdef06
+ASAR   25.921 163.86 S                00 46 45.300   0.613 347.60    5.25 20.30   4.50 T  D      6.10         3.90  0.800         e  39.72 abcdef07
+WARB   27.349 179.30 P                00 42 31.200   0.887 339.40  -19.83  8.20  -0.76 T SD      8.20         6.50  0.700 4.41 mb e  40.54 abcdef08
+WARB   27.349 179.30 PcP              00 45 49.400   0.579                             T  D                                       e  10.00 abcdef09
+MEEK   28.768 194.38 P                00 42 42.700  -0.287                             T         6.80                             e  40.12 abcdef10
+CMAR   31.774 304.11 P                00 43  9.000  -0.644 109.70   -9.60  7.80  -0.99 T S       4.30         0.60  0.400 3.78 mb e  39.59 abcdef11
+CMAR   31.774 304.11 LR               00 57 48.700  18.295 110.00   -9.30 39.50   0.45                      188.80 19.360 3.88 MS _        abcdef12
+FORT   31.969 177.12 P                00 43 11.300   0.160                             T        10.80                             e  39.55 abcdef13
+WOOL   32.515 187.37 P                00 43 15.600  -0.360   7.90   -0.70  9.90   1.14 TA        8.80         4.10  0.600 4.47 mb e  39.42 abcdef14
+SHK    33.573   9.56 P                00 43 25.400   0.246                             T                                          e  39.12 abcdef15
+KSAR   35.972   2.16 P                00 43 46.700   0.924 177.30   -5.42 10.10   1.55 T         7.20         1.70  0.700 4.04 mb e  38.35 abcdef18
+KSAR   35.972   2.16 LR               01 04 25.000 251.115 160.00  -22.72 46.00   6.96                       40.10 19.860 3.26 MS _        abcdef19
+STKA   36.069 157.57 P                00 43 46.800   0.075 323.20  -10.17  9.00   0.45 T SD      8.30         7.20  0.600 4.72 mb e  38.31 abcdef16
+STKA   36.069 157.57 PcP              00 46 12.000  -0.213                             T  D                                       e  12.44 abcdef17
+MJAR   36.740  16.15 P                00 43 51.900  -0.526 357.10  156.90 18.80  10.29 T                      2.00  0.550 4.17 mb e  38.09 abcdef20
+PDY    59.104 352.00 P                00 46 47.000   2.110 111.20  -52.92  6.60  -0.32   S      23.80         4.30  0.450 4.79 mb e  30.09 abcdef21
+ZAL    62.529 333.80 P                00 47  9.000   0.731                             T                                          e  28.90 abcdef22
+ABKT   72.059 309.51 P                00 48  9.500   0.425                             T                                          e  25.68 abcdef23
+NRI    72.595 346.76 x       P        00 48  8.700  -2.772 195.90   56.29  3.90  -2.04          11.20         3.00  0.750 4.36 mb e  25.49 abcdef24
+MAW    81.359 200.28 P                00 49  1.100   0.350                             T                                          e  22.54 abcdef25
+KVAR   84.465 313.86 P                00 49 17.200  -0.439                             T                                          e  21.46 abcdef26
+NPO    87.452  25.36 P                00 49 31.000  -0.758                             T                                          e  20.35 abcdef27
+ARCES  92.539 339.77 P                00 49 51.700  -3.763  94.50   15.06  4.10  -0.52   S      10.50         0.80  0.550 4.29 mb e  19.52 abcdef28
+SPITS  92.738 348.81 P                00 49 55.900  -0.351 116.60   46.38  3.50  -1.11 T        10.40         3.60  0.900 4.74 mb e  19.51 abcdef29
+FINES  93.728 331.71 P                00 50  0.000  -1.041 111.20   30.80  5.90   1.30           6.60         0.60  0.550 4.19 mb e  19.44 abcdef30
+HFS    99.925 332.02 P       Pdif     00 50 28.700  -0.441 311.30 -118.26  1.50  -2.95 T         3.70         1.10  0.750 4.57 mb e  18.77 abcdef31
+SCHQ  122.997   9.01 PKPdf            00 55 41.200   0.491                             T                                          e   7.98 abcdef33
+TXAR  123.399  53.19 PKPdf            00 55 42.700   0.322                             T                                          e   7.97 abcdef32
+DBIC  130.597 279.89 PKPdf            00 55 57.100   0.785                             T                                          e   7.88 abcdef34
+PLCA  137.908 160.83 PKPdf            00 56  9.100  -0.363 311.90  106.30  6.40   4.56 T         4.40         0.90  0.900         e   7.65 abcdef35
+LPAZ  159.435 137.10 PKPdf            00 56 44.700  -0.226                             T                                          e   4.78 abcdef36
+
+Defining travel-time differences:
+
+ Stat  Delta  Phases           Observed   Res
+
+WRA    22.562 S - P             244.000  -0.724
+QIS    25.359 PcP - P           212.000   0.127
+ASAR   25.921 PcP - P           208.300   0.262
+ASAR   25.921 S - P             268.400   1.226
+ASAR   25.921 S - PcP            60.100   0.963
+WARB   27.349 PcP - P           198.200  -0.309
+STKA   36.069 PcP - P           145.200  -0.288
+
+Number of usable stations:   28
+
+Total number of iterations:    22
+
+Maximum azimuthal gap of defining observations:  53.2 -> 137.1 [deg] =  83.9 [deg]
+
+Maximum secondary azimuthal gap of defining observations:  25.4 -> 137.1 [deg] = 111.7 [deg]
+
+Residuals of defining data          RMS    MEAN-ERROR      MEAN
+    29 onset times             :    0.615       0.515     -0.000  [s]
+     4 backazimuth values      :    2.447       1.996      1.351  [deg]
+     8 ray parameters          :    0.593       0.526     -0.120  [s/deg]
+     7 travel-time differences :    0.678       0.557      0.180  [s]
+
+Weighted RMS of onset times (ISC type):    0.695 [s]
+
+Weighted misfit of input data         L1      L2
+    33 onset times             :    2.200    3.128
+    20 backazimuth values      :    1.351    2.282
+    17 ray parameters          :    1.429    2.726
+     7 travel-time differences :    0.952    1.071
+    77 misfit over all         :    1.696    2.700
+
+T0                         LAT      LON       Z     VPVS   DLAT     DLON      DZ       DT0    DVPVS DEF    RMS
+1996-06-29 00 36 49.480    1.324  126.287   47.16   1.76   0.0146   0.0347    4.37    0.493   0.04   48    0.615

@@ -1,0 +1,13 @@
+#
+unsetenv HYPOSAT_DATA
+setenv HYPOSAT_DATA ../data
+
+\cp ./hyposat-in.$1 hyposat-in
+\cp hyposat-parameter.$1 hyposat-parameter
+
+../bin/hyposat
+#
+
+\diff hyposat-out hyposat-out.$1 | more
+#\mv hyposat-out hyposat-out.$1 
+exit

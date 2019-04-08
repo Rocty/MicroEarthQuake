@@ -1,0 +1,62 @@
+C Distance correction terms for magnitude (ml) computation
+C to compute the Richter-ML values:
+C
+C Original Gutenberg & Richter table (BSSA 46, 1956)
+C
+C This file is a two-dimensional table of distance corrections.
+C The corrections are functions of period and 
+C station-to-epicenter distance.
+C The number of table elements is given by NOPER*NODIST
+C (Number of period points)*(Number of distance points)
+C
+C The followiing rules apply to this file:
+C 1) Comment lines start with C or *
+C 2) The line starting with NOPER: specifies the number of columns
+C    in the table and should be updated if a new column is added.
+C 3) The line starting with NODIST: specifies the number of rows
+C    in the table and should be updated if a new row is added.
+C 4) The line starting with PERIOD-> is the column header with 
+C    period (1/frequency) in seconds.
+C 5) The rest of the lines/rows have a station-to-epicenter distance
+C    as the first field followed by correction terms
+C
+NOPER:   1                                                           
+NODIST: 201                                                          
+PERIOD-> 1.0
+    0.0  1.4 
+   10.0  1.5 
+   20.0  1.7 
+   25.0  1.9
+   30.0  2.1
+   35.0  2.3
+   40.0  2.4
+   45.0  2.5
+   50.0  2.6 
+   65.0  2.8 
+   80.0  2.9
+   90.0  3.0 
+  100.0  3.0 
+  115.0  3.1 
+  135.0  3.2 
+  155.0  3.3 
+  175.0  3.4 
+  195.0  3.5 
+  210.0  3.6 
+  235.0  3.7 
+  255.0  3.8 
+  275.0  3.9 
+  295.0  4.0 
+  315.0  4.1 
+  335.0  4.2 
+  360.0  4.3 
+  385.0  4.4 
+  410.0  4.5 
+  445.0  4.6 
+  485.0  4.7 
+  530.0  4.8 
+  575.0  4.9 
+  600.0  5.1 
+  700.0  5.2 
+  800.0  5.4 
+  900.0  5.5 
+ 1000.0  5.7 

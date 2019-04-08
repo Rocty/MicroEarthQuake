@@ -1,0 +1,203 @@
+HYPOSAT Version 6.0d
+
+Event solution by HYPOSAT
+
+Scandinavia 1994-107:12.00.0
+
+
+Parameters of initial solution (+/- 1 standard deviation):
+
+Mean epicenter calculated from   22 backazimuth observation pairs
+Mean epicenter lat:   66.954 +/-     0.994 [deg]
+Mean epicenter lon:   21.750 +/-     0.206 [deg]
+
+S-P Travel-time difference type 3 with   1 observation(s)
+   to=   766584012.0 +/-   1.0 [s] Vp/Vs= 1.73 +/- 0.50
+Mean source time:  766584011.951 +/-   0.985 [s]
+Mean       vp/vs:          1.732 +/-   0.500
+
+Oscillating solution between:   0.1 and   0.1 [km] depth
+Depth fixed at:   0.1 km
+
+Iterations        :   10
+Number of defining:   24
+Reference models  : CRUST 1.0 and iasp91_A            
+
+The new source parameters:
+
+Confidence level of given uncertainties:  95.00 %
+
+Source time  : 1994 04 17 12 00 13.384 +/-    2.722 [s]
+        or               766584013.384 +/-    2.722 [s]
+        or       1994-107:12.00.13.384 +/-    2.722 [s]
+
+
+Epicenter lat:                 67.2398 +/-   0.1306 [deg]
+Epicenter lon:                 22.2172 +/-   0.4136 [deg]
+Source depth :                  0.00   [km] Fixed
+
+Source time corrected for mean travel-time residual (  -0.480)
+
+Source time  : 1994 04 17 12 00 12.904 +/-    2.722 [s]
+        or               766584012.904 +/-    2.722 [s]
+        or       1994-107:12.00.12.904 +/-    2.722 [s]
+
+
+Epicenter error ellipse:
+Major half axis:    19.98 [km]  Minor half axis:    16.44 [km]
+Azimuth:       82.1  [deg] Area:        1031.95 [km**2]
+
+Flinn-Engdahl Region ( 536 ): SWEDISH-FINISH BORDER ZONE
+
+ Stat  Delta   Azi   Phase   [used]    Onset time    Res     Baz     Res   Rayp   Res  Used     SNR    Amplitude  Period          Q Em-Ang ARID
+
+ARCES   2.607  26.33 Pn               12 00 55.800  -0.503 212.40    3.02 14.30   0.55 TASD     97.80         4.50  0.300         e  45.83 abcdef01
+ARCES   2.607  26.33 Sn               12 01 27.900  -1.806 211.80    2.42 19.50  -5.23 TA D                                       e  48.36         
+ARCES   2.607  26.33 Sg               12 01 39.500   0.452 207.10   -2.28 28.50  -4.59 TA D                                       e  88.70         
+APA0    4.172  79.99 Pn               12 01 21.100   3.376 276.10    6.17 12.80  -0.95 TASD                                       e  45.81         
+APA0    4.172  79.99 S1      Sn       12 02 13.400   5.176 264.90   -5.03 20.60  -4.12 TA D                                       e  48.32         
+APA0    4.172  79.99 Lg               12 02 20.100  -2.328 249.40  -20.53 27.10  -3.95 T  D                                       e                
+FINES   6.055 162.14 Pn               12 01 39.200  -4.367 344.60   -1.02 15.00   1.26 TAS                                        e  45.77         
+NORES   8.028 220.68 Pn               12 01 57.800 -12.843  28.60   -2.47 13.40  -0.32  AS                                        e  45.70         
+
+Defining travel-time differences:
+
+ Stat  Delta  Phases           Observed   Res
+
+ARCES   2.607 Sn - Pn            32.100  -1.303
+ARCES   2.607 Sg - Pn            43.700   0.956
+ARCES   2.607 Sg - Sn            11.600   2.258
+APA0    4.172 Sn - Pn            52.300   1.800
+APA0    4.172 Lg - Pn            59.000  -5.703
+APA0    4.172 Lg - Sn             6.700  -7.504
+
+Number of usable stations:    4
+
+Maximum azimuthal gap of defining observations: 220.7 ->  26.3 [deg] = 165.7 [deg]
+
+Maximum secondary azimuthal gap of defining observations: 162.1 ->  26.3 [deg] = 224.2 [deg]
+
+Residuals of defining data          RMS    MEAN-ERROR      MEAN
+     7 onset times             :    3.080       2.573     -0.000  [s]
+     7 backazimuth values      :    3.599       3.202      0.113  [deg]
+     4 ray parameters          :    0.851       0.770      0.136  [s/deg]
+     6 travel-time differences :    4.078       3.254     -1.583  [s]
+
+Weighted RMS of onset times (ISC type):    3.156 [s]
+
+Weighted misfit of input data         L1      L2
+     8 onset times             :    8.359   11.226
+     8 backazimuth values      :    0.268    0.400
+     8 ray parameters          :    1.502    1.700
+     6 travel-time differences :    5.091    6.268
+    30 misfit over all         :    3.720    6.502
+
+T0                         LAT      LON       Z     VPVS   DLAT     DLON      DZ       DT0    DVPVS DEF    RMS
+1994-04-17 12 00 12.904   67.240   22.217    0.00   1.73   0.1306   0.4136  Fixed     2.722   0.50   24    3.080
+
+CRUST 1.0 model for source-region (max. delta =  1.50 deg):
+    DEPTH       VP        VS    DISCON
+     0.000     2.500     1.070      
+     0.001     2.500     1.070      
+     0.001     6.100     3.530      
+    14.606     6.100     3.530  CONR
+    14.606     6.500     3.710      
+    31.035     6.500     3.710      
+    31.035     6.900     3.930      
+    45.637     6.900     3.930  MOHO
+    45.637     8.331     4.616      
+    65.637     8.331     4.616      
+
+Oscillating solution between:   0.1 and   0.1 [km] depth
+Depth fixed at:   0.1 km
+
+Iterations        :   10
+Number of defining:   24
+Reference models  : CRUST 1.0 and iasp91_A            
+
+The new source parameters:
+
+Confidence level of given uncertainties:  95.00 %
+
+Source time  : 1994 04 17 12 00 13.384 +/-    2.722 [s]
+        or               766584013.384 +/-    2.722 [s]
+        or       1994-107:12.00.13.384 +/-    2.722 [s]
+
+
+Epicenter lat:                 67.2398 +/-   0.1306 [deg]
+Epicenter lon:                 22.2172 +/-   0.4136 [deg]
+Source depth :                  0.00   [km] Fixed
+
+Source time corrected for mean travel-time residual (  -0.480)
+
+Source time  : 1994 04 17 12 00 12.904 +/-    2.722 [s]
+        or               766584012.904 +/-    2.722 [s]
+        or       1994-107:12.00.12.904 +/-    2.722 [s]
+
+
+Epicenter error ellipse:
+Major half axis:    19.98 [km]  Minor half axis:    16.44 [km]
+Azimuth:       82.1  [deg] Area:        1031.95 [km**2]
+
+Flinn-Engdahl Region ( 536 ): SWEDISH-FINISH BORDER ZONE
+
+ Stat  Delta   Azi   Phase   [used]    Onset time    Res     Baz     Res   Rayp   Res  Used     SNR    Amplitude  Period          Q Em-Ang ARID
+
+ARCES   2.607  26.33 Pn               12 00 55.800  -0.503 212.40    3.02 14.30   0.55 TASD     97.80         4.50  0.300         e  45.83 abcdef01
+ARCES   2.607  26.33 Sn               12 01 27.900  -1.806 211.80    2.42 19.50  -5.23 TA D                                       e  48.36         
+ARCES   2.607  26.33 Sg               12 01 39.500   0.452 207.10   -2.28 28.50  -4.59 TA D                                       e  88.70         
+APA0    4.172  79.99 Pn               12 01 21.100   3.376 276.10    6.17 12.80  -0.95 TASD                                       e  45.81         
+APA0    4.172  79.99 S1      Sn       12 02 13.400   5.176 264.90   -5.03 20.60  -4.12 TA D                                       e  48.32         
+APA0    4.172  79.99 Lg               12 02 20.100  -2.328 249.40  -20.53 27.10  -3.95 T  D                                       e                
+FINES   6.055 162.14 Pn               12 01 39.200  -4.367 344.60   -1.02 15.00   1.26 TAS                                        e  45.77         
+NORES   8.028 220.68 Pn               12 01 57.800 -12.843  28.60   -2.47 13.40  -0.32  AS                                        e  45.70         
+
+Defining travel-time differences:
+
+ Stat  Delta  Phases           Observed   Res
+
+ARCES   2.607 Sn - Pn            32.100  -1.303
+ARCES   2.607 Sg - Pn            43.700   0.956
+ARCES   2.607 Sg - Sn            11.600   2.258
+APA0    4.172 Sn - Pn            52.300   1.800
+APA0    4.172 Lg - Pn            59.000  -5.703
+APA0    4.172 Lg - Sn             6.700  -7.504
+
+Number of usable stations:    4
+
+Total number of iterations:    30
+
+Maximum azimuthal gap of defining observations: 220.7 ->  26.3 [deg] = 165.7 [deg]
+
+Maximum secondary azimuthal gap of defining observations: 162.1 ->  26.3 [deg] = 224.2 [deg]
+
+Residuals of defining data          RMS    MEAN-ERROR      MEAN
+     7 onset times             :    3.080       2.573     -0.000  [s]
+     7 backazimuth values      :    3.599       3.202      0.113  [deg]
+     4 ray parameters          :    0.851       0.770      0.136  [s/deg]
+     6 travel-time differences :    4.078       3.254     -1.583  [s]
+
+Weighted RMS of onset times (ISC type):    3.156 [s]
+
+Weighted misfit of input data         L1      L2
+     8 onset times             :    8.359   11.226
+     8 backazimuth values      :    0.268    0.400
+     8 ray parameters          :    1.502    1.700
+     6 travel-time differences :    5.091    6.268
+    30 misfit over all         :    3.720    6.502
+
+T0                         LAT      LON       Z     VPVS   DLAT     DLON      DZ       DT0    DVPVS DEF    RMS
+1994-04-17 12 00 12.904   67.240   22.217    0.00   1.73   0.1306   0.4136  Fixed     2.722   0.50   24    3.080
+
+CRUST 1.0 model for source-region (max. delta =  1.50 deg):
+    DEPTH       VP        VS    DISCON
+     0.000     2.500     1.070      
+     0.001     2.500     1.070      
+     0.001     6.100     3.530      
+    14.606     6.100     3.530  CONR
+    14.606     6.500     3.710      
+    31.035     6.500     3.710      
+    31.035     6.900     3.930      
+    45.637     6.900     3.930  MOHO
+    45.637     8.331     4.616      
+    65.637     8.331     4.616      

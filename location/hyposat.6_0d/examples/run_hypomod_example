@@ -1,0 +1,12 @@
+#
+unsetenv HYPOSAT_DATA
+setenv HYPOSAT_DATA ../data
+
+\cp ./hyposat-in.tele hypomod-in
+\cp hyposat-parameter.tele.mod hyposat-parameter
+
+../bin/hypomod
+#
+
+\diff hypomod-out hypomod-out.tele | more
+exit

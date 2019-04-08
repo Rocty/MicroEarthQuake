@@ -1,0 +1,136 @@
+HYPOSAT Version 6.0d
+
+Event solution by HYPOSAT
+
+net SC, event record starttime(UTC): 2019-01-13T23:21:15.000000Z, endtime(UTC): 2019-01-13T23:22:29.990000Z
+
+
+Parameters of initial solution (+/- 1 standard deviation):
+
+No location from multiple azimuth observations found. Missing backazimuth values?
+Epicenter set from station WTXJ  with backazimuth  65.6 [deg], delta  35.26 [km]
+Epicenter lat:   31.205 [deg]
+Epicenter lon:  101.889 [deg]
+
+S-P Travel-time difference type 2 with   7 observation(s)
+   to=  1547421695.9 +/-   1.1 [s] Vp/Vs= 1.71 +/- 0.09
+Mean source time: 1547421695.889 +/-   1.139 [s]
+Mean       vp/vs:          1.707 +/-   0.085
+
+Bad resolution for depth; depth fixed
+
+Iterations        :   17
+Number of defining:   20
+Reference models  : CRUST 1.0 and iasp91_A            
+
+The new source parameters:
+
+Confidence level of given uncertainties:  95.00 %
+
+Source time  : 2019 01 13 23 21 28.919 +/-    1.397 [s]
+        or              1547421688.919 +/-    1.397 [s]
+        or       2019-013:23.21.28.919 +/-    1.397 [s]
+
+
+Epicenter lat:                 31.0830 +/-   0.2211 [deg]
+Epicenter lon:                101.0961 +/-   0.2502 [deg]
+Source depth :                103.65   [km] Fixed
+
+Source time corrected for mean travel-time residual (  -1.010)
+
+Iterations        :   12
+Number of defining:   17
+Reference models  : CRUST 1.0 and iasp91_A            
+
+The new source parameters:
+
+Confidence level of given uncertainties:  95.00 %
+
+Source time  : 2019 01 13 23 21 29.405 +/-    1.504 [s]
+        or              1547421689.405 +/-    1.504 [s]
+        or       2019-013:23.21.29.405 +/-    1.504 [s]
+
+
+Epicenter lat:                 31.1321 +/-   0.2736 [deg]
+Epicenter lon:                101.1782 +/-   0.3051 [deg]
+Source depth :                103.65   [km] Fixed
+
+Source time corrected for mean travel-time residual (  -0.136)
+
+Source time  : 2019 01 13 23 21 29.269 +/-    1.504 [s]
+        or              1547421689.269 +/-    1.504 [s]
+        or       2019-013:23.21.29.269 +/-    1.504 [s]
+
+
+Epicenter error ellipse:
+Major half axis:    46.96 [km]  Minor half axis:    25.32 [km]
+Azimuth:       38.6  [deg] Area:        3734.93 [km**2]
+
+Flinn-Engdahl Region ( 307 ): Sichuan, China
+
+Magnitude:  3.0 (ML, Richter)
+
+ Stat  Delta   Azi   Phase   [used]    Onset time    Res     Baz     Res   Rayp   Res  Used     SNR    Amplitude  Period   MAG    Q Em-Ang
+
+WTXJ    0.205 354.82 P1      Pn       23 21 42.110  -2.995                             T  D     42.10       477.70                i 166.76
+WTXJ    0.205 354.82 S1      Sn       23 21 46.220 -10.656                                D     53.40       477.70  1.000 3.58 ml i 166.86
+BEXJ    0.326 100.12 P1      Pn       23 21 44.050  -1.306                             T         2.10       166.80                i 159.26
+XDZJ    0.508 302.31 P1      Pn       23 21 45.620  -0.996                             T  D      1.80        91.10                i 149.22
+XDZJ    0.508 302.31 S1      Sn       23 21 52.690  -6.865                                D      1.70        91.10  1.000 2.86 ml i 149.43
+YDXJ    0.663 301.90 P1      Pn       23 21 48.170   0.313                             T  D     20.60        47.70                i 141.74
+YDXJ    0.663 301.90 S1      Sn       23 21 57.250  -4.488                                D     25.00        47.70  1.000 2.68 ml i 142.00
+BMZJ    0.692 158.31 P1      Pn       23 21 47.980  -0.153                             T  D     25.30        73.30                i 140.44
+BMZJ    0.692 158.31 S1      Sn       23 21 56.900  -5.287                                D     28.50        73.30  1.000 2.87 ml i 140.70
+GZXJ    0.737 117.54 P1      Pn       23 21 50.710   2.526                             T  D      6.90        94.60                i 138.54
+GZXJ    0.737 117.54 S1      Sn       23 22  0.690  -1.788                             T  D      7.30        94.60  1.000 2.98 ml i 138.82
+WDZJ    0.838 331.36 P1      Pn       23 21 52.310   2.787                             T  D     16.70        69.70                i 134.58
+WDZJ    0.838 331.36 S1      Sn       23 22  4.900   0.244                             T  D     17.30        69.70  1.000 2.94 ml i 134.87
+HPXJ    0.928 233.86 P1      Pn       23 21 51.700   1.368                             T  D      4.80        61.30                i 131.38
+HPXJ    0.928 233.86 S1      Sn       23 22  1.760  -4.323                                D      4.20        61.30  1.000 2.89 ml i 131.64
+
+Defining travel-time differences:
+
+ Stat  Delta  Phases           Observed   Res
+
+WTXJ    0.205 Sn - Pn             4.110  -7.661
+XDZJ    0.508 Sn - Pn             7.070  -5.870
+YDXJ    0.663 Sn - Pn             9.080  -4.801
+BMZJ    0.692 Sn - Pn             8.920  -5.134
+GZXJ    0.737 Sn - Pn             9.980  -4.313
+WDZJ    0.838 Sn - Pn            12.590  -2.543
+HPXJ    0.928 Sn - Pn            10.060  -5.691
+
+Number of usable stations:    8
+
+Total number of iterations:    29
+
+Maximum azimuthal gap of defining observations: 354.8 -> 100.1 [deg] = 105.3 [deg]
+
+Maximum secondary azimuthal gap of defining observations: 158.3 -> 301.9 [deg] = 143.6 [deg]
+
+Residuals of defining data          RMS    MEAN-ERROR      MEAN
+    10 onset times             :    1.762       1.447     -0.000  [s]
+     7 travel-time differences :    5.345       5.145     -5.145  [s]
+
+Weighted RMS of onset times (ISC type):    1.691 [s]
+
+Weighted misfit of input data         L1      L2
+    15 onset times             :   19.513   23.872
+     7 travel-time differences :   23.008   23.905
+    22 misfit over all         :   20.625   23.883
+
+T0                         LAT      LON       Z     VPVS   DLAT     DLON      DZ       DT0    DVPVS DEF    RMS
+2019-01-13 23 21 29.269   31.132  101.178  103.65   1.71   0.2736   0.3051  Fixed     1.504   0.09   17    1.762
+
+CRUST 1.0 model for source-region (max. delta =  1.50 deg):
+    DEPTH       VP        VS    DISCON
+     0.000     6.000     3.520      
+    25.836     6.000     3.520      
+    25.836     6.300     3.680      
+    40.144     6.300     3.680  CONR
+    40.144     6.600     3.820      
+    55.647     6.600     3.820  MOHO
+    55.647     7.984     4.441      
+    75.647     7.984     4.441      
+
+Could not find a better or non-oscillating solution without fixed depth

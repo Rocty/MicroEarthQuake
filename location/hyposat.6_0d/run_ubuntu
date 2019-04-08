@@ -1,0 +1,6 @@
+#
+cd location/hyposat.6_0d
+export HYPOSAT_DATA=./data
+./bin/hyposat
+#
+
