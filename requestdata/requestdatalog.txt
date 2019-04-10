@@ -1,5 +1,5 @@
-2019-04-08 11:20:54,846 - requestdata.requestdata - INFO - Reading data from AWS error, station:SC.BEXJ.00
-2019-04-08 11:20:54,846 - requestdata.requestdata - ERROR - [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+2019-04-10 16:06:14,002 - requestdata.requestdata - INFO - Reading data from AWS error, station:SC.BEXJ.00
+2019-04-10 16:06:14,002 - requestdata.requestdata - ERROR - [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
 Traceback (most recent call last):
   File "D:\Project\ADT\Python\MicroEarthQuake\requestdata\requestdata.py", line 108, in AWS_get_data
     resp, content = h.request(tmp_url)

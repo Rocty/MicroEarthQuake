@@ -129,3 +129,10 @@
 1.有CUDA® 计算能力为 3.5 或更高的 NVIDIA® GPU 卡，为v0.1  
 2.CPU较新（支持AVX2.0指令集），为v0.1-cpu  
 3.CPU较旧，为v0.1-cpu-tf1.5  
+
+##结构  
+
+获取、分析数据部分（requestdata）  
+识别模型部分（eqdetector）  
+拾取模型部分（eqpickup）  
+定位模型部分（location）

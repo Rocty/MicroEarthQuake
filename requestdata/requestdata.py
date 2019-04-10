@@ -21,11 +21,11 @@ from location.location import Hyposat
 
 class RequestData(object):
     def __init__(self):
-        self.config = Config()
-        self.stream_buffer = []
-        self.data_buffer = []
-        self.data_stats_buffer = []
-        self.req_lock = threading.Lock()
+        self.config = Config()  # 配置文件信息
+        self.stream_buffer = []  # 缓冲区（）
+        self.data_buffer = []  # 数据缓冲区
+        self.data_stats_buffer = []  # 数据状态缓冲区
+        self.req_lock = threading.Lock()  #
         self.contain_windows = self.config.detect_window_size // self.config.window_lag_time - 1
         self.location_model = Hyposat()
 
@@ -33,7 +33,7 @@ class RequestData(object):
         self.Cata_id_last_id = ''
 
     def process_data(self, starttime_UTC, endtime_UTC):
-        '将数据处理成np.array, 并记录状态'
+        # 将数据处理成np.array, 并记录状态
         for i, stream in enumerate(self.stream_buffer):
             # for stream in self.stream_buffer:
             if not (stream[0].stats.starttime == stream[1].stats.starttime
@@ -258,15 +258,17 @@ class RequestData(object):
                         # 超过2.5级不往数据库里写
                         if write_M <= 2.5:
                             print(
-                                "INSERT INTO Catalog(Auto_flag, id, Net_code, Save_time, Operator, O_time, Epi_lat, Epi_lon, Epi_depth, M, Rms) VALUES ('A', '%s', '%s', '%s', '%s', '%s', %s, %s, %s, %s, %s)" % (
-                                    write_id, write_Net_code, write_Save_time, write_Operator, write_O_time,
-                                    write_Epi_lat,
-                                    write_Epi_lon, write_Epi_depth, write_M, write_Rms))
+                                "INSERT INTO Catalog(Auto_flag, id, Net_code, Save_time, Operator, O_time, Epi_lat, Epi_lon, Epi_depth, M, Rms) "
+                                "VALUES ('A', '%s', '%s', '%s', '%s', '%s', %s, %s, %s, %s, %s)" %
+                                (write_id, write_Net_code, write_Save_time, write_Operator, write_O_time, write_Epi_lat,
+                                 write_Epi_lon, write_Epi_depth, write_M, write_Rms)
+                            )
                             cur.execute(
-                                "INSERT INTO Catalog(Auto_flag, id, Net_code, Save_time, Operator, O_time, Epi_lat, Epi_lon, Epi_depth, M, Rms) VALUES ('A', '%s', '%s', '%s', '%s', '%s', %s, %s, %s, %s, %s)" % (
-                                    write_id, write_Net_code, write_Save_time, write_Operator, write_O_time,
-                                    write_Epi_lat,
-                                    write_Epi_lon, write_Epi_depth, write_M, write_Rms))
+                                "INSERT INTO Catalog(Auto_flag, id, Net_code, Save_time, Operator, O_time, Epi_lat, Epi_lon, Epi_depth, M, Rms) "
+                                "VALUES ('A', '%s', '%s', '%s', '%s', '%s', %s, %s, %s, %s, %s)" %
+                                (write_id, write_Net_code, write_Save_time, write_Operator, write_O_time, write_Epi_lat,
+                                 write_Epi_lon, write_Epi_depth, write_M, write_Rms)
+                            )
                             db.commit()
                     except:
                         print('写入数据库错误！')

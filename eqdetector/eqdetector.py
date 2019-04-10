@@ -24,8 +24,6 @@ class EqDetector(object):
     def close_sess(self, sess):
         self.detect_model.close_sess(sess)
 
-
-
     def data_preprocess(self, data, filter_model='bandpass', isabs=True):
         if filter_model == 'bandpass':
             data = bandpass(data, freqmin=4, freqmax=49, df=100)
@@ -39,7 +37,7 @@ class EqDetector(object):
         first_start = 0
         act_flag = 0
         event_list = []
-        station_act_flag = np.zeros([len(eq_stats)], dtype=np.int)      # 0:未检测到地震信号；1：当前检测的地震信号；-1：已检测到地震信号且已结束
+        station_act_flag = np.zeros([len(eq_stats)], dtype=np.int)  # 0:未检测到地震信号；1：当前检测的地震信号；-1：已检测到地震信号且已结束
         station_confidence = np.zeros([len(eq_stats)], dtype=np.float32)
 
         current_endtime = -1
@@ -59,7 +57,7 @@ class EqDetector(object):
             if act_flag == 0 and sum(class_pred) < 3:
                 continue
 
-            if act_flag == 0 and sum(class_pred) >= 3:          # fisrt act
+            if act_flag == 0 and sum(class_pred) >= 3:  # fisrt act
                 first_start = window_start
                 act_flag = 1
                 for station in range(len(class_pred)):
@@ -88,7 +86,9 @@ class EqDetector(object):
                         if station_act_flag[station] != 0:
                             station_record = [eq_stats[station]['id'],
                                               starttime_UTC + first_start / 100.0,
-                                              min(starttime_UTC + (window_start + self.config.pickup_window_size * 100 - 1) / 100.0, endtime_UTC),
+                                              min(starttime_UTC + (
+                                                      window_start + self.config.pickup_window_size * 100 - 1) / 100.0,
+                                                  endtime_UTC),
                                               station_confidence[station]]
                             event.append(station_record)
                     event_list.append(event)

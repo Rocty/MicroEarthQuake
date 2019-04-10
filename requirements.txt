@@ -12,3 +12,15 @@ pywt==1.0.6
 
 
 版本高亦可
+
+除了以上必须包，还需要以下操作：
+
+# apt-get install python3-tk
+关于ubuntu安装pywt：
+先pip3 uninstall pywt，再 apt-get install python3-pywt
+安装hyposat依赖环境：
+
+而且如果在win下，用Linux子系统，要怎么调试
+跟在window下面是一样的
+只是中间location的程序是在linux子系统上执行的而已
+
